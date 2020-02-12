@@ -46,12 +46,6 @@ exports.seed = function(knex) {
           insurance_company_id: 13,
           policy_type: "condo",
           policy_num: "eu44214"
-        },
-        {
-          user_id: 8,
-          insurance_company_id: 10,
-          policy_type: "renters",
-          policy_num: "occaecat40369"
         }
       ]);
     });
