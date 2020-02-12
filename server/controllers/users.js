@@ -2,7 +2,7 @@ const User = require('../models/User');
 const addressController = require('./address')
 
 exports.getAllUsers = async (req, res) => {
-  const users = await User.query().withGraphFetched('address');
+  const users = await User.query().withGraphFetched('[address, user_insurance.[insurance_company]]');
   res.json(users);
 };
 
@@ -52,7 +52,7 @@ exports.updateUser = async (req, res) => {
 
   addressController.updateAddress(addressToUpdate)
 
-  const updatedUser = await User.query().findById(req.params.id).patch(userToUpdate).returning('*').withGraphFetched('[address]');
+  const updatedUser = await User.query().findById(req.params.id).patch(userToUpdate).returning('*').withGraphFetched('[address, user_insurance]');
 
   res.json(updatedUser);
 };
