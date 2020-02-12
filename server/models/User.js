@@ -13,8 +13,9 @@ class User extends Model {
     const Address = require('./Address');
     
     const UserInsurance = require('./UserInsurance');
+
     return {
-      address: {
+      addresses: {
         relation: Model.HasManyRelation,
         modelClass: Address,
         join: {
@@ -22,7 +23,7 @@ class User extends Model {
           to: "addresses.user_id"
         }
       },
-      user_insurance: {
+      user_insurances: {
         relation: Model.HasOneRelation,
         modelClass: UserInsurance,
         join: {
