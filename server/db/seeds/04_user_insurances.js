@@ -1,10 +1,10 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('user_insurance').del()
+  return knex('user_insurances').del()
     .then(function () {
       // Inserts seed entries
-      return knex('user_insurance').insert([
+      return knex('user_insurances').insert([
         {
           user_id: 1,
           insurance_company_id: 7,

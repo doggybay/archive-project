@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-  return knex.schema.createTable('user_insurance', table => {
+  return knex.schema.createTable('user_insurances', table => {
     table.increments();
     table.integer('user_id').notNullable();
     table.integer('insurance_company_id').references('insurance_company.id').notNullable().onDelete('CASCADE');
@@ -11,5 +11,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('user_insurance');
+  return knex.schema.dropTable('user_insurances');
 };

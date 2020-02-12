@@ -3,19 +3,19 @@ const { Model } = require('objection');
 
 class UserInsurance extends Model {
   static get tableName() {
-    return 'user_insurance'
+    return 'user_insurances'
   }
 
   static get relationMappings() {
     const InsuranceCompany = require('./InsuranceCompany');
 
     return {
-      insurance_company: {
+      insurance_companys: {
         relation: Model.HasOneRelation,
         modelClass: InsuranceCompany,
         join: {
           from: "user_insurance.insurance_company_id",
-          to: "insurance_company.id"
+          to: "insurance_companys.id"
         }
       }
     };

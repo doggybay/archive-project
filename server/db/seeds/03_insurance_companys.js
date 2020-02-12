@@ -1,10 +1,10 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('insurance_company').del()
+  return knex('insurance_companys').del()
     .then(function () {
       // Inserts seed entries
-      return knex('insurance_company').insert([
+      return knex('insurance_companys').insert([
         { name: "USAA", phone: "800-531-8722" },
         { name: "Lemonade", phone: "844-733-8666" },
         { name: "Farmers", phone: "800-435-7764" },

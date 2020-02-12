@@ -3,7 +3,7 @@ const User = require('./User')
 
 class Address extends Model {
   static get tableName() {
-    return 'address'
+    return 'addresses'
   }
 
   static relationMappings = {
@@ -12,7 +12,7 @@ class Address extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: User,
       join: {
-        from: 'Address.user_id',
+        from: 'Addresses.user_id',
         to: 'users.id'
       }
     }
@@ -26,11 +26,11 @@ class Address extends Model {
       properties: {
         id: { type: 'integer' },
         user_id: { type: 'integer' },
-        stAddress: { type: 'string' },
-        optAddress: { type: 'string' },
+        st_address: { type: 'string' },
+        opt_address: { type: 'string' },
         city: { type: 'string' },
         state: { type: 'string' },
-        zipCode: { type: 'integer' }
+        zip_code: { type: 'integer' }
       }
     }
   }

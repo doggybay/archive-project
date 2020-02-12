@@ -1,10 +1,10 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('address').del()
+  return knex('addresses').del()
     .then(function () {
       // Inserts seed entries
-      return knex('address').insert([
+      return knex('addresses').insert([
         {
           user_id: 1,
           stAddress: "942 Highland Boulevard",

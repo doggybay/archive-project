@@ -19,7 +19,7 @@ class User extends Model {
         modelClass: Address,
         join: {
           from: "users.id",
-          to: "address.user_id"
+          to: "addresses.user_id"
         }
       },
       user_insurance: {
@@ -27,7 +27,7 @@ class User extends Model {
         modelClass: UserInsurance,
         join: {
           from: "users.id",
-          to: "user_insurance.user_id"
+          to: "user_insurances.user_id"
         }
       }
     };
