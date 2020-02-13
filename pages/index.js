@@ -27,7 +27,7 @@ export default function Index() {
           <Typography variant="h4" component="h1" gutterBottom>
             Welcome to Archive
           </Typography>
-          <Link href="/about" color="secondary">
+          <Link href="./components/dashboard" color="secondary">
             Go to the about page
           </Link>
           <ProTip />

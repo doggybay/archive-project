@@ -1,22 +1,38 @@
+const path = require('path');
 const { Model } = require('objection');
-const Address = require('./Address')
 
 class User extends Model {
-  // static get tableName() {
-  //   return 'users';
-  // }
-  static tableName = 'users';
+  
 
-  static relationMappings = {
+  static get tableName() {
+    return 'users';
+  }
 
-    address: {
-      relation: Model.HasManyRelation,
-      modelClass: Address,
-      join: {
-        from: 'users.id',
-        to: 'address.user_id'
+  static get relationMappings() {
+
+    const Address = require('./Address');
+    
+    const UserInsurance = require('./UserInsurance');
+
+    return {
+      addresses: {
+        relation: Model.HasManyRelation,
+        modelClass: Address,
+        join: {
+          from: "users.id",
+          to: "addresses.user_id"
+        }
+      },
+      user_insurances: {
+        relation: Model.HasOneRelation,
+        modelClass: UserInsurance,
+        join: {
+          from: "users.id",
+          to: "user_insurances.user_id"
+        }
       }
-    }
+    };
+    
   }
 
   static get jsonSchema() {
@@ -32,7 +48,7 @@ class User extends Model {
         phone: { type: 'string', minLength: 1, maxLength: 255 }
       }
     }
-};
+  };
 
 }
 
