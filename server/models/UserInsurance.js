@@ -14,7 +14,7 @@ class UserInsurance extends Model {
         relation: Model.HasOneRelation,
         modelClass: InsuranceCompany,
         join: {
-          from: "user_insurance.insurance_company_id",
+          from: "user_insurances.insurance_company_id",
           to: "insurance_companys.id"
         }
       }
@@ -38,4 +38,4 @@ class UserInsurance extends Model {
   };
 }
 
-module.exports = UserInsurance
+module.exports = UserInsurance;
