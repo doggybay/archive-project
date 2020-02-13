@@ -28,11 +28,11 @@ class UserInsurance extends Model {
       required: ["user_id", "insurance_company_id"],
 
       properties: {
-        id: { type: "integer" },
-        user_id: { type: "string", minLength: 1, maxLength: 255 },
-        insurance_company_id: { type: "string", minLength: 1, maxLength: 255 },
-        policy_num: { type: "string", minLength: 1, maxLength: 255 },
-        policy_type: { type: "string", minLength: 1, maxLength: 255 }
+        id: { type: 'integer' },
+        user_id: { type: 'integer', minLength: 1, maxLength: 255 },
+        insurance_company_id: { type: 'integer', minLength: 1, maxLength: 255 },
+        policy_num: { type: 'string', minLength: 1, maxLength: 255 },
+        policy_type: { type: 'string', minLength: 1, maxLength: 255 }
       }
     };
   };
