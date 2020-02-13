@@ -11,24 +11,33 @@ class User extends Model {
   static get relationMappings() {
 
     const Address = require('./Address');
-    
     const UserInsurance = require('./UserInsurance');
+    const ArchiveItem = require('./ArchiveItem');
+
 
     return {
       addresses: {
         relation: Model.HasManyRelation,
         modelClass: Address,
         join: {
-          from: "users.id",
-          to: "addresses.user_id"
+          from: 'users.id',
+          to: 'addresses.user_id'
         }
       },
       user_insurances: {
         relation: Model.HasOneRelation,
         modelClass: UserInsurance,
         join: {
-          from: "users.id",
-          to: "user_insurances.user_id"
+          from: 'users.id',
+          to: 'user_insurances.user_id'
+        }
+      },
+      archive_items: {
+        relation: Model.HasManyRelation,
+        modelClass: ArchiveItem,
+        join: {
+          from: 'users.id',
+          to: 'archive_items.user_id'
         }
       }
     };

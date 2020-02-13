@@ -4,11 +4,11 @@ exports.addNewAddress = async (address, userId ) => {
 
   const formattedAddress = {
     user_id: userId,
-    stAddress: address.stAddress,
-    optAddress: address.optAddress,
+    st_sddress: address.stAddress,
+    opt_address: address.optAddress,
     city: address.city,
     state: address.state,
-    zipCode: address.zipCode
+    zip_code: address.zipCode
   };
   const newAddress = await Address.query()
     .insert(formattedAddress)
@@ -20,11 +20,11 @@ exports.addNewAddress = async (address, userId ) => {
 exports.updateAddress = async (address) => {
 
   const formattedAddress = {
-    stAddress: address.stAddress,
-    optAddress: address.optAddress,
+    st_address: address.stAddress,
+    opt_address: address.optAddress,
     city: address.city,
     state: address.state,
-    zipCode: address.zipCode
+    zip_code: address.zipCode
   };
 
   // TODO
@@ -35,7 +35,7 @@ exports.updateAddress = async (address) => {
 }
 
 exports.deleteAddress = async (id) => {
-  const address = await Address.query().select('user_id').where('address.user_id', '=', id).del().returning('*')
+  const address = await Address.query().select('user_id').where('addresses.user_id', '=', id).del().returning('*')
 
   
   return address;

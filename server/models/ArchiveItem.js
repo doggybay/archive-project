@@ -38,3 +38,5 @@ class ArchiveItem extends Model {
     }
   }
 }
+
+module.exports = ArchiveItem;
