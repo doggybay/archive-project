@@ -37,6 +37,7 @@ const handleRender = (req, res) => {
 app.prepare().then(() => {
   const server = express()
   const users = require('./routes/users')
+  const archiveItem = require('./routes/archiveItems')
 
   server.use(logger('dev'));
   server.use(cors());
@@ -46,6 +47,7 @@ app.prepare().then(() => {
   // server.use(handleRender)
   
   server.use('/api', users)
+  server.use('/api', archiveItem)
 
 
   server.all('*', (req, res) => {
