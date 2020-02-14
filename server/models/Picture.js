@@ -18,3 +18,5 @@ class Picture extends Model {
   };
   
 }
+
+module.exports = Picture;
