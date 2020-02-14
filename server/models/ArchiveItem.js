@@ -6,7 +6,8 @@ class ArchiveItem extends Model {
   }
 
   static get relationMappings() {
-    const Type = require('./Type')
+    const Type = require('./Type');
+    const Picture = require('./Picture');
 
     return {
       types: {
@@ -15,6 +16,14 @@ class ArchiveItem extends Model {
         join: {
           from: 'archive_items.type_id',
           to: 'types.id'
+        }
+      },
+      pictures: {
+        relation: Model.HasManyRelation,
+        modelClass: Picture,
+        join: {
+          from: 'archive_items.id',
+          to: 'pictures.archive_item_id'
         }
       }
     };
