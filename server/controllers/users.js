@@ -9,7 +9,7 @@ exports.getAllUsers = async (req, res) => {
 exports.getOneUser = async (req, res) => {
   const user = await User.query()
     .findById(req.params.id)
-    .withGraphFetched('[addresses]');
+    .withGraphFetched('[addresses, user_insurances.[insurance_companys], archive_items.[types, pictures]]');
   
   res.json(user);
 };
