@@ -7,18 +7,21 @@ import Link from '../src/Link';
 
 
 
-import { fetchAllUsers } from '../store/users/actionCreators'
+import { fetchAllUsers, fetchOneUser } from '../store/users/actionCreators'
+import { fetchAllArchiveItems } from '../store/archive-items/actionCreators'
 
 
 
 
-export default function Index() {
+export default function Index(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchAllUsers());
+    dispatch(fetchAllArchiveItems());
+    dispatch(fetchOneUser(1));
   });
-
+  console.log('app props:', props)
   return (
     <div>
       
