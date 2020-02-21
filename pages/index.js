@@ -21,17 +21,17 @@ export default function Index(props) {
     dispatch(fetchAllArchiveItems());
     dispatch(fetchOneUser(1));
   });
-  console.log('app props:', props)
+  
   return (
     <div>
       
       <Container maxWidth="sm">
-        <Box my={4}>
+        <Box my={10}>
           <Typography variant="h4" component="h1" gutterBottom>
             Welcome to Archive
           </Typography>
           <Link href="/dashboard" color="secondary">
-            Go to the about page
+            Go to Dashboard
           </Link>
           <ProTip />
           
