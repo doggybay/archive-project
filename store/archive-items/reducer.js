@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
       return { ...state, all: action.payload }
     
     case constants.FETCH_ONE_ARCHIVE_ITEM_SUCCESS:
-      return { ...state, oneUser: action.payload }
+      return { ...state, oneArchiveItem: action.payload }
     
     case constants.ADD_NEW_ARCHIVE_ITEM_SUCCESS:
       return { ...state, all: [...state.all, action.payload] }
