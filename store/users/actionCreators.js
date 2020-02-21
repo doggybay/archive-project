@@ -9,7 +9,7 @@ export const fetchAllUsers = () => {
     try {
       dispatch(actions.fetchAllUsersPending())
 
-      const res = await axios.get(`http://localhost:8000/api/users`)
+      const res = await axios.get(`api/users`)
 
       dispatch(actions.fetchAllUsersSuccess(res.data))
     } catch (err) {
@@ -23,7 +23,7 @@ export const fetchOneUser = (id) => {
     try {
       dispatch(actions.fetchOneUserPending())
 
-      const res = await axios.get(`${BASE_URL}/users/${id}`)
+      const res = await axios.get(`api/users/${id}`)
 
       dispatch(actions.fetchOneUserSuccess(res.data))
     } catch (err) {
@@ -52,7 +52,7 @@ export const editUser = (id) => {
     try {
       dispatch(actions.editUserPending())
 
-      const res = await axios.patch(`${BASE_URL}/users/${id}`)
+      const res = await axios.patch(`api/users/${id}`)
 
       dispatch(actions.editUserSuccess(res.data))
 
@@ -67,7 +67,7 @@ export const addNewUser = () => {
     try {
       dispatch(actions.addNewUserPending())
 
-      const res = await axios.post(`${BASE_URL}/users`)
+      const res = await axios.post(`api/users`)
 
       dispatch(actions.addNewUserSuccess(res.data))
 
@@ -83,7 +83,7 @@ export const removeUser = (id) => {
     try {
       dispatch(actions.removeUserPending())
 
-      const res = await axios.delete(`${BASE_URL}/users/${id}`)
+      const res = await axios.delete(`api/users/${id}`)
 
       dispatch(actions.removeUserSuccess(res.data))
 

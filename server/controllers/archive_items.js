@@ -6,3 +6,11 @@ exports.getAllArchiveItems = async (req, res) => {
 
   res.json(archiveItems);
 }
+
+exports.getOneArchiveItem = async (req, res) => {
+  const archiveItem = await ArchiveItem.query()
+    .findById(req.params.id)
+    .withGraphFetched('[types, pictures]');
+  
+  res.json(archiveItem);
+};

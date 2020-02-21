@@ -7,28 +7,31 @@ import Link from '../src/Link';
 
 
 
-import { fetchAllUsers } from '../store/users/actionCreators'
+import { fetchAllUsers, fetchOneUser } from '../store/users/actionCreators'
+import { fetchAllArchiveItems } from '../store/archive-items/actionCreators'
 
 
 
 
-export default function Index() {
+export default function Index(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchAllUsers());
+    dispatch(fetchAllArchiveItems());
+    dispatch(fetchOneUser(1));
   });
-
+  
   return (
     <div>
       
       <Container maxWidth="sm">
-        <Box my={4}>
+        <Box my={10}>
           <Typography variant="h4" component="h1" gutterBottom>
             Welcome to Archive
           </Typography>
-          <Link href="./components/dashboard" color="secondary">
-            Go to the about page
+          <Link href="/dashboard" color="secondary">
+            Go to Dashboard
           </Link>
           <ProTip />
           
