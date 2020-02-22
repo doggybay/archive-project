@@ -11,7 +11,7 @@ import { mainListItems, secondaryListItems } from '../src/listItems'
 
 
 
-import ArchiveItemsList from '../components/archive-items/ArchiveItemsList'
+import ArchiveItemsList from '../src/components/archive-items/ArchiveItemsList'
 
 const drawerWidth = 240;
 

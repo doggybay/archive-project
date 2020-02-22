@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, GridList, GridListTile, GridListTileBar, Button, Container, Grid } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
-import Link from '../../src/Link';
+import Link from '../../Link';
 import { useRouter } from 'next/router'
 
 import { fetchOneArchiveItem } from '../../store/archive-items/actionCreators'

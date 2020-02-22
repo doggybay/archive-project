@@ -7,8 +7,8 @@ import Link from '../src/Link';
 
 
 
-import { fetchAllUsers, fetchOneUser } from '../store/users/actionCreators'
-import { fetchAllArchiveItems } from '../store/archive-items/actionCreators'
+import { fetchAllUsers, fetchOneUser } from '../src/store/users/actionCreators'
+import { fetchAllArchiveItems } from '../src/store/archive-items/actionCreators'
 
 
 
