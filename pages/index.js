@@ -13,7 +13,7 @@ import { fetchAllArchiveItems } from '../store/archive-items/actionCreators'
 
 
 
-export default function Index(props) {
+export default function App(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Index(props) {
           <Link href="/dashboard" color="secondary">
             Go to Dashboard
           </Link>
-          <ProTip />
+          
           
         </Box>
       </Container>
