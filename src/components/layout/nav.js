@@ -4,8 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, FormControlLabel, FormGroup, MenuItem, Menu, Switch, List, Divider, Drawer } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
-import Link from '../../src/Link';
-import { mainListItems, secondaryListItems } from '../../src/listItems'
+import Link from '../../Link';
+import { mainListItems, secondaryListItems } from '../../listItems'
 
 const useStyles = makeStyles(theme => ({
   root: {

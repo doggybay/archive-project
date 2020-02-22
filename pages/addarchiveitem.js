@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, Box, Paper } from '@material-ui/core';
-import AddArchiveItemForm from '../components/forms/AddArchiveItemForm'
+import AddArchiveItemForm from '../src/components/forms/AddArchiveItemForm'
 
 const useStyles = makeStyles(theme => ({
   root: {

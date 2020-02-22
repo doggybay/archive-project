@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ArchiveItemsList from '../../components/archive-items/ArchiveItemsList';
+import ArchiveItemsList from '../../src/components/archive-items/ArchiveItemsList';
 
 const MyArchive = () => {
 
