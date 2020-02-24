@@ -28,37 +28,43 @@ const handle = app.getRequestHandler();
 
 const renderFullPage = (html, css) => {
 
-}
+};
 
 const handleRender = (req, res) => {
 
-}
+};
 
 app.prepare().then(() => {
-  const server = express()
-  const users = require('./routes/users')
-  const archiveItem = require('./routes/archiveItems')
+  const server = express();
 
+  // importing routes
+  const users = require('./routes/users');
+  const archiveItem = require('./routes/archiveItems');
+  const types = require('./routes/types');
+
+  // middleware
   server.use(logger('dev'));
   server.use(cors());
-  server.use(bodyParser.json())
+  server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: false }));
   
   // server.use(handleRender)
   
-  server.use('/api', users)
-  server.use('/api', archiveItem)
+  // using routes
+  server.use('/api', users);
+  server.use('/api', archiveItem);
+  server.use('/api', types);
 
-
+  // next pass through
   server.all('*', (req, res) => {
-    return handle(req, res)
-  })
+    return handle(req, res);
+  });
 
   server.listen(port, err => {
     if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
-  })
-})
+    console.log(`> Ready on http://localhost:${port}`);
+  });
+});
 // const index = require('./routes/indexRoutes');
 // const todos = require('./routes/todosRoutes');
 
