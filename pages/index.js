@@ -7,8 +7,9 @@ import Link from '../src/Link';
 
 
 
-import { fetchAllUsers, fetchOneUser } from '../src/store/users/actionCreators'
-import { fetchAllArchiveItems } from '../src/store/archive-items/actionCreators'
+import { fetchAllUsers, fetchOneUser } from '../src/store/users/actionCreators';
+import { fetchAllArchiveItems } from '../src/store/archive-items/actionCreators';
+import { fetchAllTypes } from '../src/store/types/actionCreators';
 
 
 
@@ -20,6 +21,7 @@ export default function App(props) {
     dispatch(fetchAllUsers());
     dispatch(fetchAllArchiveItems());
     dispatch(fetchOneUser(1));
+    dispatch(fetchAllTypes());
   });
   
   return (
