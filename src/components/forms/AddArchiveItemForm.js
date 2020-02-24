@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import { styled } from "@material-ui/styles";
@@ -39,6 +40,8 @@ const useStyles = makeStyles(theme => ({
 const AddArchiveItemForm = () => {
   const classes = useStyles();
   const inputLabel = React.useRef(null);
+
+  const types = useSelector(state => state.types.all);
 
   const [state, setState] = React.useState({
     age: "",
