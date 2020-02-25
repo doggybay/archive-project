@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Container, Typography, Box, Paper, Grid, MobileStepper, Button } from '@material-ui/core';
-import AddArchiveItemForm from '../src/components/forms/AddArchiveItemForm';
+import AddArchiveItemForm from '../src/components/forms/archive-item/AddArchiveItemForm';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
@@ -34,11 +34,11 @@ const AddArchiveItem = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  
-
-
-
   const [step, setStep] = useState(1);
+  const [state, setState] = useState({
+    make: "",
+    model: ""
+  });
 
   const nextStep = () => {
     setStep(step + 1);

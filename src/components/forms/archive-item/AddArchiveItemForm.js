@@ -47,6 +47,7 @@ const AddArchiveItemForm = () => {
     age: "",
     name: "hai"
   });
+  
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
