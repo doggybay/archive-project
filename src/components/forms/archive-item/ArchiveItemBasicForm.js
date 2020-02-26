@@ -1,9 +1,12 @@
 import React, { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import { Grid, MobileStepper, Button, TextField } from '@material-ui/core';
+import { Grid, Select, FormControl, InputLabel, MobileStepper, Button } from '@material-ui/core';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    minWidth: 180
   },
   stepper: {
     backgroundColor: theme.palette.primary.light,
@@ -25,21 +28,37 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ArchiveItemDetailsForm = (props) => {
+// Begin component
+
+const ArchiveItemBasicForm = (props) => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { handleChange, state, nextStep, prevStep, step } = props;
+  const inputLabel = React.useRef(null);
+
+  const types = useSelector(state => state.types.all);
+
+  // const [state, setState] = React.useState({
+  //   type: "",
+  //   name: "hai"
+  // });
+  
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  React.useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth);
+  }, []);
+
+  const { handleChange, state, step, nextStep } = props;
 
   const continueStep = e => {
     e.preventDefault();
-    nextStep();
-  };
+    nextStep()
+  }
 
-  const backStep = e => {
-    e.preventDefault();
-    prevStep();
-  };
+  const listOfTypes = types.map(type => {
+
+    return (<option key={type.id} value={type.id}>{type.name}</option>)
+  })
 
   return (
     <Fragment>
@@ -47,37 +66,43 @@ const ArchiveItemDetailsForm = (props) => {
         <Grid container direction="column" justify="center" alignItems="center">
           <Grid item>
             <TextField
-              id="serial-number"
-              label="Serial Number"
+              id="make"
+              label="Make"
               type="text"
-              placeholder="What is the serial number?"
+              placeholder="Who makes your item?"
               size="small"
-              value={state.serial_num}
-              onChange={handleChange("serial_num")}
+              value={state.make}
+              onChange={handleChange("make")}
             />
           </Grid>
           <Grid item>
             <TextField
-              id="price"
-              label="Item Price"
-              type="number"
-              placeholder="how much does it cost?"
+              id="model"
+              label="Model"
+              type="text"
+              placeholder="What model is your item?"
               size="small"
-              value={state.price}
-              onChange={handleChange("price")}
+              value={state.model}
+              onChange={handleChange("model")}
             />
           </Grid>
           <Grid item>
-            <TextField
-              id="description"
-              label="Item Description"
-              multiline
-              rowsMax="4"
-              placeholder="Any additional description?"
-              size="small"
-              value={state.description}
-              onChange={handleChange("description")}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel ref={inputLabel} htmlFor="type-select">
+                Category
+              </InputLabel>
+              <Select
+                native
+                value={state.type}
+                onChange={handleChange("type_id")}
+                labelWidth={labelWidth}
+              >
+                <option value="" />
+
+                {listOfTypes}
+
+              </Select>
+            </FormControl>
           </Grid>
         </Grid>
       </form>
@@ -98,7 +123,7 @@ const ArchiveItemDetailsForm = (props) => {
           </Button>
         }
         backButton={
-          <Button size="small" onClick={backStep} disabled={step === 1}>
+          <Button size="small" disabled={step === 1}>
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (
@@ -110,6 +135,6 @@ const ArchiveItemDetailsForm = (props) => {
       />
     </Fragment>
   );
-}
+};
 
-export default ArchiveItemDetailsForm;
+export default ArchiveItemBasicForm;
