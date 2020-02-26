@@ -117,19 +117,19 @@ const Dashboard = (props) => {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                charts
+                Total items broken down by category
               </Paper>
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                deposits
+                Total dollar amounts
               </Paper>
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                orders
+                Maybe insurance info
               </Paper>
             </Grid>
           </Grid>
