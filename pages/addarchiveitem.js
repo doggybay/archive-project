@@ -1,8 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Container, Typography, Box, Paper, Grid, MobileStepper, Button } from '@material-ui/core';
-import AddArchiveItemForm from '../src/components/forms/AddArchiveItemForm';
+import { Container, Typography, Box, Paper, Grid, MobileStepper, Button,  } from '@material-ui/core';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
+
+import ArchiveItemBasicForm from '../src/components/forms/archive-item/ArchiveItemBasicForm';
+import ArchiveItemDetailsForm from '../src/components/forms/archive-item/ArchiveItemDetailsForm';
+import ArchiveItemPicturesForm from '../src/components/forms/archive-item/ArchiveItemPicturesForm';
+import AddArchiveItemConfirm from '../src/components/forms/archive-item/AddArchiveItemConfirm';
+import AddArchiveItemSuccess from '../src/components/forms/archive-item/AddArchiveItemSuccess';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,8 +21,9 @@ const useStyles = makeStyles(theme => ({
   },
   heading: {},
   paper: {
-    padding: theme.spacing(3, 2),
-    width: "auto"
+    padding: theme.spacing(2),
+    width: "auto",
+    marginTop: theme.spacing(2),
   },
   stepper: {
     backgroundColor: theme.palette.primary.light,
@@ -33,7 +40,55 @@ const AddArchiveItem = () => {
   const classes = useStyles();
   const theme = useTheme();
 
+  const widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dnrmrcpbi",
+        uploadPreset: "archivePictures",
+        sources: ["local", "camera"],
+        multiple: false,
+        styles: {
+          palette: {
+            window: "#F5F5F5",
+            sourceBg: "#FFFFFF",
+            windowBorder: "#90a0b3",
+            tabIcon: "#0094c7",
+            inactiveTabIcon: "#69778A",
+            menuIcons: "#0094C7",
+            link: "#53ad9d",
+            action: "#8F5DA5",
+            inProgress: "#0194c7",
+            complete: "#53ad9d",
+            error: "#c43737",
+            textDark: "#000000",
+            textLight: "#FFFFFF"
+          }
+        }
+      },
+      (error, result) => {
+        if (result.event === "close") {
+          console.log("cloudinary widget closed");
+        } else if (result.event === "success") {
+          console.log("results in widget: ", result.info);
+          setState({
+            ...state,
+            pictures: [...state.pictures, result.info.secure_url]
+          });
+          widget.close();
+        }
+      }
+    )
+  
+
   const [step, setStep] = useState(1);
+  const [state, setState] = useState({
+    make: "",
+    model: "",
+    type_id: "",
+    serial_num: "",
+    price: 0,
+    description: "",
+    pictures: []
+  });
 
   const nextStep = () => {
     setStep(step + 1);
@@ -42,6 +97,29 @@ const AddArchiveItem = () => {
   const prevStep = () => {
     setStep(step - 1);
   };
+
+  const handleChange = name => e => {
+    setState({
+      ...state,
+      [name]: e.target.value
+    });
+  };
+
+  const handleSubmit = () => {
+    
+    console.log('heard', state)
+    nextStep()
+  }
+
+  const removePic = (pic) => {
+    state.pictures.splice(pic, 1);
+    setState({
+      ...state,
+          pictures: [...state.pictures]
+    })
+  }
+
+  
 
   switch (step) {
     case 1:
@@ -63,42 +141,14 @@ const AddArchiveItem = () => {
                   What are we adding?
                 </Typography>
 
-                <AddArchiveItemForm />
-                <MobileStepper
-                  variant="progress"
-                  steps={6}
-                  position="static"
-                  activeStep={step}
-                  className={classes.stepper}
-                  nextButton={
-                    <Button
-                      size="small"
-                      onClick={nextStep}
-                      disabled={step === 6}
-                    >
-                      Next
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowLeft />
-                      ) : (
-                        <KeyboardArrowRight />
-                      )}
-                    </Button>
-                  }
-                  backButton={
-                    <Button
-                      size="small"
-                      onClick={prevStep}
-                      disabled={step === 1}
-                    >
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowRight />
-                      ) : (
-                        <KeyboardArrowLeft />
-                      )}
-                      Back
-                    </Button>
-                  }
+                <ArchiveItemBasicForm
+                  handleChange={handleChange}
+                  state={state}
+                  step={step}
+                  nextStep={nextStep}
                 />
+
+                
               </Paper>
             </Grid>
           </Grid>
@@ -120,45 +170,18 @@ const AddArchiveItem = () => {
                   component="h2"
                   className={classes.heading}
                 >
-                  More info 1
+                  Additional Item Details
                 </Typography>
 
-                <AddArchiveItemForm />
-                <MobileStepper
-                  variant="progress"
-                  steps={6}
-                  position="static"
-                  activeStep={step}
-                  className={classes.stepper}
-                  nextButton={
-                    <Button
-                      size="small"
-                      onClick={nextStep}
-                      disabled={step === 6}
-                    >
-                      Next
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowLeft />
-                      ) : (
-                        <KeyboardArrowRight />
-                      )}
-                    </Button>
-                  }
-                  backButton={
-                    <Button
-                      size="small"
-                      onClick={prevStep}
-                      disabled={step === 1}
-                    >
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowRight />
-                      ) : (
-                        <KeyboardArrowLeft />
-                      )}
-                      Back
-                    </Button>
-                  }
+                <ArchiveItemDetailsForm
+                  handleChange={handleChange}
+                  state={state}
+                  step={step}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
                 />
+
+                
               </Paper>
             </Grid>
           </Grid>
@@ -180,45 +203,19 @@ const AddArchiveItem = () => {
                   component="h2"
                   className={classes.heading}
                 >
-                  More info 2
+                  Add Some Pictures
                 </Typography>
 
-                <AddArchiveItemForm />
-                <MobileStepper
-                  variant="progress"
-                  steps={6}
-                  position="static"
-                  activeStep={step}
-                  className={classes.stepper}
-                  nextButton={
-                    <Button
-                      size="small"
-                      onClick={nextStep}
-                      disabled={step === 6}
-                    >
-                      Next
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowLeft />
-                      ) : (
-                        <KeyboardArrowRight />
-                      )}
-                    </Button>
-                  }
-                  backButton={
-                    <Button
-                      size="small"
-                      onClick={prevStep}
-                      disabled={step === 1}
-                    >
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowRight />
-                      ) : (
-                        <KeyboardArrowLeft />
-                      )}
-                      Back
-                    </Button>
-                  }
+                <ArchiveItemPicturesForm
+                  widget={widget}
+                  state={state}
+                  removePic={removePic}
+                  step={step}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
                 />
+
+                
               </Paper>
             </Grid>
           </Grid>
@@ -240,45 +237,18 @@ const AddArchiveItem = () => {
                   component="h2"
                   className={classes.heading}
                 >
-                  Pictures
+                  Confirm
                 </Typography>
 
-                <AddArchiveItemForm />
-                <MobileStepper
-                  variant="progress"
-                  steps={6}
-                  position="static"
-                  activeStep={step}
-                  className={classes.stepper}
-                  nextButton={
-                    <Button
-                      size="small"
-                      onClick={nextStep}
-                      disabled={step === 6}
-                    >
-                      Next
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowLeft />
-                      ) : (
-                        <KeyboardArrowRight />
-                      )}
-                    </Button>
-                  }
-                  backButton={
-                    <Button
-                      size="small"
-                      onClick={prevStep}
-                      disabled={step === 1}
-                    >
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowRight />
-                      ) : (
-                        <KeyboardArrowLeft />
-                      )}
-                      Back
-                    </Button>
-                  }
+                <AddArchiveItemConfirm
+                  state={state}
+                  step={step}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleSubmit={handleSubmit}
                 />
+
+                
               </Paper>
             </Grid>
           </Grid>
@@ -300,45 +270,11 @@ const AddArchiveItem = () => {
                   component="h2"
                   className={classes.heading}
                 >
-                  Confirm before submit
+                  Success
                 </Typography>
 
-                <AddArchiveItemForm />
-                <MobileStepper
-                  variant="progress"
-                  steps={6}
-                  position="static"
-                  activeStep={step}
-                  className={classes.stepper}
-                  nextButton={
-                    <Button
-                      size="small"
-                      onClick={nextStep}
-                      disabled={step === 6}
-                    >
-                      Submit
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowLeft />
-                      ) : (
-                        <KeyboardArrowRight />
-                      )}
-                    </Button>
-                  }
-                  backButton={
-                    <Button
-                      size="small"
-                      onClick={prevStep}
-                      disabled={step === 1}
-                    >
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowRight />
-                      ) : (
-                        <KeyboardArrowLeft />
-                      )}
-                      Back
-                    </Button>
-                  }
-                />
+                <AddArchiveItemSuccess />
+
               </Paper>
             </Grid>
           </Grid>
