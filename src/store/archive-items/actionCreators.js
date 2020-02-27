@@ -47,12 +47,12 @@ export const editArchiveItem = (id) => {
   }
 }
 
-export const addNewArchiveItem = () => {
+export const addNewArchiveItem = (newArchiveItem) => {
   return async (dispatch) => {
     try {
       dispatch(actions.addNewArchiveItemPending())
 
-      const res = await axios.post(`api/archive-items`)
+      const res = await axios.post(`api/archive-items`, newArchiveItem)
 
       dispatch(actions.addNewArchiveItemSuccess(res.data))
 

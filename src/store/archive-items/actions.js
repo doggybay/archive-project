@@ -32,9 +32,9 @@ export const addNewArchiveItemPending = () => ({
   type: constants.ADD_NEW_ARCHIVE_ITEM_PENDING
 })
 
-export const addNewArchiveItemSuccess = (newUser) => ({
+export const addNewArchiveItemSuccess = (newArchiveItem) => ({
   type: constants.ADD_NEW_ARCHIVE_ITEM_SUCCESS,
-  payload: newUser
+  payload: newArchiveItem
 })
 
 export const addNewArchiveItemFailed = (err) => ({
