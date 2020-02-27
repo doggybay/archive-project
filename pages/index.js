@@ -21,7 +21,7 @@ export default function App(props) {
     dispatch(fetchAllUsers());
     dispatch(fetchAllArchiveItems());
     dispatch(fetchOneUser(1));
-    dispatch(fetchAllTypes());
+    //dispatch(fetchAllTypes());
   });
   
   return (
