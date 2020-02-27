@@ -25,7 +25,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="My Archive" />
     </ListItem>
-    <ListItem button component={Link} href="/addarchiveitem">
+    <ListItem button component={Link} href="/addtomyarchive">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
