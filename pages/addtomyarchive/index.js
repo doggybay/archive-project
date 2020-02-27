@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from '../../src/Link';
+import { useDispatch } from 'react-redux';
+
+import { fetchAllTypes } from '../../src/store/types/actionCreators';
+
 
 const AddToMyArchive = (props) => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchAllTypes())
+  })
+
 
   return (
     <div>

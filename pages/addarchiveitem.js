@@ -9,7 +9,7 @@ import ArchiveItemBasicForm from '../src/components/forms/archive-item/ArchiveIt
 import ArchiveItemDetailsForm from '../src/components/forms/archive-item/ArchiveItemDetailsForm';
 import ArchiveItemPicturesForm from '../src/components/forms/archive-item/ArchiveItemPicturesForm';
 import AddArchiveItemConfirm from '../src/components/forms/archive-item/AddArchiveItemConfirm';
-import AddArchiveItemSuccess from '../src/components/forms/archive-item/AddArchiveItemSuccess';
+import { addNewArchiveItem } from '../src/store/archive-items/actionCreators'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,8 +42,9 @@ const AddArchiveItem = () => {
   const classes = useStyles();
   const theme = useTheme();
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  console.log('router: ', router)
+  
   const [widget, setWidget] = useState({})
 
   const makeWidget = () => {
@@ -76,12 +77,12 @@ const AddArchiveItem = () => {
           if (result.event === "close") {
             console.log("cloudinary widget closed");
           } else if (result.event === "success") {
-            console.log("results in widget: ", result.info);
+            
             setState({
               ...state,
               pictures: [...state.pictures, result.info.secure_url]
             });
-            widget.close();
+            
           }
         }
       )
@@ -95,7 +96,7 @@ const AddArchiveItem = () => {
     model: "",
     type_id: "",
     serial_num: "",
-    price: 0,
+    price: "",
     description: "",
     pictures: []
   });
@@ -117,7 +118,8 @@ const AddArchiveItem = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newArchiveItem = { ...state, user_id: 1 }
+    const newArchiveItem = { ...state, user_id: 1, type_id: Number(state.type_id), price: Number(state.price) }
+    dispatch(addNewArchiveItem(newArchiveItem))
     router.push("/addtomyarchive/success")
   }
 
@@ -129,7 +131,7 @@ const AddArchiveItem = () => {
     })
   }
 
-  
+  console.log('state: ', state)
 
   switch (step) {
     case 1:
