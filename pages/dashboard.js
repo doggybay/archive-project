@@ -118,6 +118,9 @@ const Dashboard = (props) => {
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 Total items broken down by category
+                <Link href={"/myarchive/success"} >
+                  Link to success
+                </Link>
               </Paper>
             </Grid>
             {/* Recent Deposits */}

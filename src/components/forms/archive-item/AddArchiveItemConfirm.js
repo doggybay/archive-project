@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useRouter } from 'next/router';
 import { List, ListItem, ListItemText, GridListTile, GridList, MobileStepper, Button } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 const AddArchiveItemConfirm = ({ state, nextStep, prevStep, handleSubmit, step }) => {
   const classes = useStyles();
   const theme = useTheme();
+  
 
   const { make, model, type_id, serial_num, price, description, pictures } = state;
   const types = useSelector(state => state.types.all);
@@ -31,7 +33,7 @@ const AddArchiveItemConfirm = ({ state, nextStep, prevStep, handleSubmit, step }
 
   const continueStep = e => {
     e.preventDefault();
-    handleSubmit();
+    handleSubmit(e);
     
   };
 

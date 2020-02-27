@@ -29,10 +29,11 @@ const ArchiveItemDetailsForm = (props) => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { handleChange, state, nextStep, prevStep, step } = props;
+  const { handleChange, state, nextStep, prevStep, step, makeWidget } = props;
 
   const continueStep = e => {
     e.preventDefault();
+    makeWidget();
     nextStep();
   };
 

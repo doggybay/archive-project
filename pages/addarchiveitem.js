@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from "next/router";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Container, Typography, Box, Paper, Grid, MobileStepper, Button,  } from '@material-ui/core';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
@@ -36,47 +37,56 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
 const AddArchiveItem = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const router = useRouter();
 
-  const widget = window.cloudinary.createUploadWidget(
-      {
-        cloudName: "dnrmrcpbi",
-        uploadPreset: "archivePictures",
-        sources: ["local", "camera"],
-        multiple: false,
-        styles: {
-          palette: {
-            window: "#F5F5F5",
-            sourceBg: "#FFFFFF",
-            windowBorder: "#90a0b3",
-            tabIcon: "#0094c7",
-            inactiveTabIcon: "#69778A",
-            menuIcons: "#0094C7",
-            link: "#53ad9d",
-            action: "#8F5DA5",
-            inProgress: "#0194c7",
-            complete: "#53ad9d",
-            error: "#c43737",
-            textDark: "#000000",
-            textLight: "#FFFFFF"
+  console.log('router: ', router)
+  const [widget, setWidget] = useState({})
+
+  const makeWidget = () => {
+    setWidget(
+      window.cloudinary.createUploadWidget(
+        {
+          cloudName: "dnrmrcpbi",
+          uploadPreset: "archivePictures",
+          sources: ["local", "camera"],
+          multiple: false,
+          styles: {
+            palette: {
+              window: "#F5F5F5",
+              sourceBg: "#FFFFFF",
+              windowBorder: "#90a0b3",
+              tabIcon: "#0094c7",
+              inactiveTabIcon: "#69778A",
+              menuIcons: "#0094C7",
+              link: "#53ad9d",
+              action: "#8F5DA5",
+              inProgress: "#0194c7",
+              complete: "#53ad9d",
+              error: "#c43737",
+              textDark: "#000000",
+              textLight: "#FFFFFF"
+            }
+          }
+        },
+        (error, result) => {
+          if (result.event === "close") {
+            console.log("cloudinary widget closed");
+          } else if (result.event === "success") {
+            console.log("results in widget: ", result.info);
+            setState({
+              ...state,
+              pictures: [...state.pictures, result.info.secure_url]
+            });
+            widget.close();
           }
         }
-      },
-      (error, result) => {
-        if (result.event === "close") {
-          console.log("cloudinary widget closed");
-        } else if (result.event === "success") {
-          console.log("results in widget: ", result.info);
-          setState({
-            ...state,
-            pictures: [...state.pictures, result.info.secure_url]
-          });
-          widget.close();
-        }
-      }
-    )
+      )
+    );
+  }
   
 
   const [step, setStep] = useState(1);
@@ -105,10 +115,10 @@ const AddArchiveItem = () => {
     });
   };
 
-  const handleSubmit = () => {
-    
-    console.log('heard', state)
-    nextStep()
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newArchiveItem = { ...state, user_id: 1 }
+    router.push("/addtomyarchive/success")
   }
 
   const removePic = (pic) => {
@@ -179,6 +189,7 @@ const AddArchiveItem = () => {
                   step={step}
                   nextStep={nextStep}
                   prevStep={prevStep}
+                  makeWidget={makeWidget}
                 />
 
                 
@@ -254,32 +265,32 @@ const AddArchiveItem = () => {
           </Grid>
         </Fragment>
       );
-    case 5:
-      return (
-        <Fragment>
-          <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-          >
-            <Grid item>
-              <Paper elevation={4} className={classes.paper}>
-                <Typography
-                  variant="h5"
-                  component="h2"
-                  className={classes.heading}
-                >
-                  Success
-                </Typography>
+    // case 5:
+    //   return (
+    //     <Fragment>
+    //       <Grid
+    //         container
+    //         direction="column"
+    //         justify="center"
+    //         alignItems="center"
+    //       >
+    //         <Grid item>
+    //           <Paper elevation={4} className={classes.paper}>
+    //             <Typography
+    //               variant="h5"
+    //               component="h2"
+    //               className={classes.heading}
+    //             >
+    //               Success
+    //             </Typography>
 
-                <AddArchiveItemSuccess />
+    //             <AddArchiveItemSuccess />
 
-              </Paper>
-            </Grid>
-          </Grid>
-        </Fragment>
-      );
+    //           </Paper>
+    //         </Grid>
+    //       </Grid>
+    //     </Fragment>
+    //   );
   }
 }
 
