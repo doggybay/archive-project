@@ -8,9 +8,9 @@ import { fetchAllTypes } from '../../src/store/types/actionCreators';
 const AddToMyArchive = (props) => {
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchAllTypes())
-  })
+  // useEffect(() => {
+  //   dispatch(fetchAllTypes())
+  // }, [])
 
 
   return (

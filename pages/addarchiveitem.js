@@ -10,6 +10,7 @@ import ArchiveItemDetailsForm from '../src/components/forms/archive-item/Archive
 import ArchiveItemPicturesForm from '../src/components/forms/archive-item/ArchiveItemPicturesForm';
 import AddArchiveItemConfirm from '../src/components/forms/archive-item/AddArchiveItemConfirm';
 import { addNewArchiveItem } from '../src/store/archive-items/actionCreators'
+import { fetchAllTypes } from '../src/store/types/actionCreators';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     width: "auto",
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2)
   },
   stepper: {
     backgroundColor: theme.palette.primary.light,
@@ -44,7 +45,11 @@ const AddArchiveItem = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  
+  useEffect(() => {
+    dispatch(fetchAllTypes());
+  }, []);
+
+
   const [widget, setWidget] = useState({})
 
   const makeWidget = () => {

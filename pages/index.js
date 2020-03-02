@@ -11,18 +11,17 @@ import { fetchAllUsers, fetchOneUser } from '../src/store/users/actionCreators';
 import { fetchAllArchiveItems } from '../src/store/archive-items/actionCreators';
 import { fetchAllTypes } from '../src/store/types/actionCreators';
 
-
+import ArchiveItem from '../pages/archiveitem';
 
 
 export default function App(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAllUsers());
-    dispatch(fetchAllArchiveItems());
-    dispatch(fetchOneUser(1));
-    //dispatch(fetchAllTypes());
-  });
+    //dispatch(fetchAllUsers());
+    // dispatch(fetchAllArchiveItems());
+    // dispatch(fetchOneUser(1));
+  }, []);
   
   return (
     <div>
@@ -36,6 +35,7 @@ export default function App(props) {
             Go to Dashboard
           </Link>
           
+          <ArchiveItem />
           
         </Box>
       </Container>

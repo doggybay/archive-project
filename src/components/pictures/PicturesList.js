@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { Container, Paper, Typography, Grid, Card, CardActionArea, CardActions, CardContent, CardMedia } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useRouter } from 'next/router'
-import { Container, Paper, Typography, Grid, Card, CardActionArea, CardActions, CardContent, CardMedia } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   cards: {
@@ -21,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     padding: theme.spacing(2),
-    maxWidth: theme.spacing(20),
+    maxWidth: theme.spacing(40),
     margin: theme.spacing(1)
   }
 }));
@@ -54,35 +60,27 @@ const staticArchiveItem = () => ({
   ]
 });
 
-const ArchiveItem = (props) => {
-  const hcai = staticArchiveItem()
-  const data = useSelector(state => state.archiveItems.oneArchiveItem);
-  const router = useRouter();
+const PicturesList = () => {
+  const hcai = staticArchiveItem();
   const classes = useStyles();
-  const theme = useTheme();
+  const data = useSelector(state => state.archiveItems.oneArchiveItem);
 
-  const archiveItem = data.hasOwnProperty('id') ? data : hcai;
+  const archiveItem = data.hasOwnProperty("id") ? data : hcai;
 
   const pictures = archiveItem.pictures;
-  const type = archiveItem.types
 
-  console.log('archive item page: ', archiveItem)
-  console.log('theme: ', theme)
 
   const listOfPics = pictures.map(picture => {
-    
     return (
-      <Card key={picture.id} className={classes.cards} style={{ }}>
-      <CardMedia
-      className={classes.media}
-      image={picture.pic}
-      title={`A ${archiveItem.make} ${archiveItem.model}`}
-      />
-      
-        
+      <Card key={picture.id} className={classes.cards} style={{}}>
+        <CardMedia
+          className={classes.media}
+          image={picture.pic}
+          title={`A`}
+        />
       </Card>
     );
-  })
+  });
 
   return (
     <Grid
@@ -100,5 +98,4 @@ const ArchiveItem = (props) => {
   );
 };
 
-
-export default ArchiveItem;
+export default PicturesList;
