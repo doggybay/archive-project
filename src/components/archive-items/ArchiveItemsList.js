@@ -52,6 +52,12 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     maxWidth: theme.spacing(40),
     margin: theme.spacing(1)
+  },
+  picDialog: {
+    maxWidth: theme.spacing(60),
+    display: "flex",
+    padding: theme.spacing(2),
+    margin: theme.spacing(1)
   }
 }));
 
@@ -62,7 +68,9 @@ const ArchiveItemsList = (props) => {
 
   const user = useSelector(state => state.users.oneUser);
   const archiveItems = user.hasOwnProperty("id") ? user.archive_items : [];
+
   const [open, setOpen] = useState(false);
+  const [displayPic, setDisplayPic] = useState(0);
 
 
   const getOneArchiveItem = (id) => {
@@ -78,21 +86,9 @@ const ArchiveItemsList = (props) => {
   };
 
   const listOfArchiveItems = archiveItems.map(item => {
+    console.log("state pic: ", displayPic)
     const pictures = item.pictures;
     const type = item.types;
-
-    const listOfPics = pictures.map(picture => {
-      console.log('pic: ', picture.pic)
-      return (
-        <Card key={picture.id} className={classes.cards} style={{}}>
-          <CardMedia
-            className={classes.media}
-            image={picture.pic}
-            title={`A`}
-          />
-        </Card>
-      );
-    });
 
     return (
       <Fragment>
@@ -151,14 +147,13 @@ const ArchiveItemsList = (props) => {
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <PicturesList />
-          
+          <DialogContent className={classes.picDialog} >
+            <PicturesList setDisplayPic={setDisplayPic} handleClose={handleClose} />
+          </DialogContent>
+
           <DialogActions>
             <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleClose} color="primary">
-              Subscribe
+              Close
             </Button>
           </DialogActions>
         </Dialog>
@@ -183,28 +178,3 @@ const ArchiveItemsList = (props) => {
 }
 
 export default ArchiveItemsList;
-
-
-
-
-// <GridList cellHeight={200} className={classes.gridList} cols={3}>
-//   {listOfArchiveItems}
-// </GridList>;
-
-
-// <GridListTile key={item.id} cols={1}>
-//         <img src={pictures[0] ? pictures[0].pic : ""} alt={item.make} />
-//         <GridListTileBar
-//           actionIcon={
-//             <IconButton
-//               aria-label={`info about ${type.name}`}
-//               className={classes.icon}
-//               component={Link}
-//               href={`/archiveitem?id=${item.id}`}
-//               onClick={() => getOneArchiveItem(item.id)}
-//             >
-//               <InfoIcon />
-//             </IconButton>
-//           }
-//         />
-//       </GridListTile>
