@@ -12,22 +12,25 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   cards: {
-    width: theme.spacing(16),
-    marginRight: "15px",
-    marginBottom: "15px"
+    width: theme.spacing(20),
+    marginTop: theme.spacing(2),
+    minHeight: theme.spacing(20)
   },
   grid: {
     display: "flex",
-    marginTop: "10px",
-    marginBottom: "0px"
+    justifyContent: "space-around",
+    width: "400px"
   },
   media: {
     height: 140,
-    maxWidth: theme.spacing(16)
+    maxWidth: theme.spacing(16),
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2)
   },
   paper: {
+    display: "flex",
     padding: theme.spacing(2),
-    maxWidth: theme.spacing(40),
     margin: theme.spacing(1)
   }
 }));
@@ -60,7 +63,7 @@ const staticArchiveItem = () => ({
   ]
 });
 
-const PicturesList = () => {
+const PicturesList = (props) => {
   const hcai = staticArchiveItem();
   const classes = useStyles();
   const data = useSelector(state => state.archiveItems.oneArchiveItem);
@@ -70,30 +73,23 @@ const PicturesList = () => {
   const pictures = archiveItem.pictures;
 
 
-  const listOfPics = pictures.map(picture => {
+  const listOfPics = pictures.map((picture, i) => {
     return (
-      <Card key={picture.id} className={classes.cards} style={{}}>
-        <CardMedia
-          className={classes.media}
-          image={picture.pic}
-          title={`A`}
-        />
-      </Card>
+      <Grid item sm={12} md={6}>
+        <Card key={picture.id} className={classes.cards} raised>
+          <CardMedia
+            className={classes.media}
+            image={picture.pic}
+            title={`A`}
+          />
+        </Card>
+      </Grid>
     );
   });
 
   return (
-    <Grid
-      container
-      justify="center"
-      alignItems="center"
-      className={classes.grid}
-    >
-      <Grid item>
-        <Paper variant="outlined" elevation={4} className={classes.paper}>
-          {listOfPics}
-        </Paper>
-      </Grid>
+    <Grid container className={classes.grid}>
+      {listOfPics}
     </Grid>
   );
 };
