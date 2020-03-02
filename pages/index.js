@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Typography, Box } from '@material-ui/core';
 import MuiLink from '@material-ui/core/Link';
@@ -24,8 +24,7 @@ export default function App(props) {
   }, []);
   
   return (
-    <div>
-      
+    <Fragment>
       <Container maxWidth="sm">
         <Box my={10}>
           <Typography variant="h4" component="h1" gutterBottom>
@@ -34,11 +33,9 @@ export default function App(props) {
           <Link href="/dashboard" color="secondary">
             Go to Dashboard
           </Link>
-          
-          <ArchiveItem />
-          
         </Box>
       </Container>
-    </div>
+      
+    </Fragment>
   );
 }

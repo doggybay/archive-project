@@ -63,7 +63,7 @@ const staticArchiveItem = () => ({
   ]
 });
 
-const PicturesList = ({ setDisplayPic, handleClose }) => {
+const PicturesList = (props) => {
   const hcai = staticArchiveItem();
   const classes = useStyles();
   const data = useSelector(state => state.archiveItems.oneArchiveItem);

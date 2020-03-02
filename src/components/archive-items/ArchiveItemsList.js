@@ -126,17 +126,22 @@ const ArchiveItemsList = (props) => {
             </CardContent>
             <CardActions disableSpacing>
               <IconButton
-                aria-label="add to favorites"
+                aria-label="more info"
                 component={Link}
                 href={`/archiveitem?id=${item.id}`}
                 onClick={() => getOneArchiveItem(item.id)}
               >
                 <InfoIcon />
               </IconButton>
-              <IconButton aria-label="share">
+              <IconButton
+                aria-label="edit archive item"
+                component={Link}
+                href={`/myarchive/editmyarchiveitem?id=${item.id}`}
+                onClick={() => getOneArchiveItem(item.id)}
+              >
                 <EditIcon />
               </IconButton>
-              <IconButton aria-label="share">
+              <IconButton aria-label="delete archive item">
                 <DeleteIcon />
               </IconButton>
             </CardActions>
@@ -147,8 +152,11 @@ const ArchiveItemsList = (props) => {
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogContent className={classes.picDialog} >
-            <PicturesList setDisplayPic={setDisplayPic} handleClose={handleClose} />
+          <DialogContent className={classes.picDialog}>
+            <PicturesList
+              setDisplayPic={setDisplayPic}
+              handleClose={handleClose}
+            />
           </DialogContent>
 
           <DialogActions>
