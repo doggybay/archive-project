@@ -32,12 +32,12 @@ export const fetchOneArchiveItem = (id) => {
   }
 }
 
-export const editArchiveItem = (id) => {
+export const editArchiveItem = (id, item) => {
   return async (dispatch) => {
     try {
       dispatch(actions.editArchiveItemPending())
 
-      const res = await axios.patch(`api/archive-items/${id}`)
+      const res = await axios.patch(`api/archive-items/${id}`, item)
 
       dispatch(actions.editArchiveItemSuccess(res.data))
 
