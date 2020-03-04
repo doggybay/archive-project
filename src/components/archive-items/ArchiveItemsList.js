@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 
 import PicturesList from '../pictures/PicturesList'
 import { fetchOneArchiveItem } from '../../store/archive-items/actionCreators';
+import { fetchAllTypes } from '../../store/types/actionCreators';
 import ArchiveItem from '../../../pages/archiveitem';
 
 
@@ -77,6 +78,10 @@ const ArchiveItemsList = (props) => {
     dispatch(fetchOneArchiveItem(id))
   };
   
+  const getAllTypes = () => {
+    dispatch(fetchAllTypes())
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -137,7 +142,10 @@ const ArchiveItemsList = (props) => {
                 aria-label="edit archive item"
                 component={Link}
                 href={`/myarchive/editmyarchiveitem?id=${item.id}`}
-                onClick={() => getOneArchiveItem(item.id)}
+                onClick={() => {
+                  getAllTypes();
+                  getOneArchiveItem(item.id);
+                }}
               >
                 <EditIcon />
               </IconButton>
