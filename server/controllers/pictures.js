@@ -11,6 +11,21 @@ exports.addNewPicture = async (pictures, archiveId) => {
     const newPicture = await Picture.query().insert(formattedPic)
 
   }
-
-  
 }
+
+exports.addPicFromUpdate = async (pictures, Id) => {
+  
+  
+
+  for (let i = 0; i < pictures.length; i++) {
+    
+    if (!pictures[i].hasOwnProperty("id")) {
+      let formattedPic = {
+        archive_item_id: Number(Id),
+        pic: pictures[i].pic
+      };
+      
+      const newPicture = await Picture.query().insert(formattedPic);
+    }
+  }
+};
