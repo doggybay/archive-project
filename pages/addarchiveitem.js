@@ -124,7 +124,9 @@ const AddArchiveItem = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const newArchiveItem = { ...state, user_id: 1, type_id: Number(state.type_id), price: Number(state.price) }
+
     dispatch(addNewArchiveItem(newArchiveItem))
+    
     router.push("/addtomyarchive/success")
   }
 

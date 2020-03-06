@@ -214,7 +214,7 @@ const ArchiveItemEditForm = ({ state, setState, handleChange, widget, pictures, 
             <IconButton
               aria-label="delete archive picture"
               className={classes.icon}
-              onClick={() => removePic(i)}
+              onClick={() => removePic(i, picture.id)}
             >
               <DeleteIcon />
             </IconButton>

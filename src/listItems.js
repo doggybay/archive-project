@@ -4,8 +4,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
+import ArchiveIcon from '@material-ui/icons/Archive';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
@@ -21,13 +21,13 @@ export const mainListItems = (
     </ListItem>
     <ListItem button component={Link} href="/myarchive">
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <ArchiveIcon />
       </ListItemIcon>
       <ListItemText primary="My Archive" />
     </ListItem>
     <ListItem button component={Link} href="/addtomyarchive">
       <ListItemIcon>
-        <PeopleIcon />
+        <LibraryAddIcon />
       </ListItemIcon>
       <ListItemText primary="Add to My Archive" />
     </ListItem>

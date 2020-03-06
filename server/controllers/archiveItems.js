@@ -43,20 +43,32 @@ exports.addArchiveItem = async (req, res) => {
 exports.editArchiveItem = async (req, res) => {
   const archiveItem = { ...req.body };
   const pictures = archiveItem.pictures;
+  const deletedPics = archiveItem.deletedPics;
 
   const formattedAI = {
-    user_id: archiveItem.user_id,
+    user_id: Number(archiveItem.user_id),
     make: archiveItem.make,
     model: archiveItem.model,
-    type_id: archiveItem.type_id,
+    type_id: Number(archiveItem.type_id),
     serial_num: archiveItem.serial_num,
-    price: archiveItem.price,
+    price: Number(archiveItem.price),
     description: archiveItem.description
   };
   
   picturesController.addPicFromUpdate(pictures, req.params.id);
+  
+  if (deletedPics) {
+    picturesController.deletePictures(deletedPics);
+  };
 
   const updatedAI = await ArchiveItem.query().findById(req.params.id).patch(formattedAI).returning('*').withGraphFetched('[types, pictures]');
 
   res.json(updatedAI)
+}
+
+exports.deleteArchiveItem = async (req, res) => {
+  console.log(req.params.id)
+  const deletedAI = await ArchiveItem.query().deleteById(Number(req.params.id)).returning('*');
+
+  res.json(deletedAI);
 }

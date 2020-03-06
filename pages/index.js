@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Container, Typography, Box } from '@material-ui/core';
 import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/ProTip';
-import Link from '../src/Link';
+import Link from '../src/Link';import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 

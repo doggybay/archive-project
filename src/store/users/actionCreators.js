@@ -93,3 +93,17 @@ export const removeUser = (id) => {
     }
   }
 }
+
+export const removeAIFromUser = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(actions.removeAIThrUsrPending())
+
+      const res = await axios.delete(`api/archive-items/${id}`)
+
+      dispatch(actions.removeAIThrUsrSuccess(res.data))
+    } catch (err) {
+      dispatch(actions.removeAIThrUsrFailed())
+    }
+  }
+}

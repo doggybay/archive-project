@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 
 import PicturesList from '../pictures/PicturesList'
 import { fetchOneArchiveItem } from '../../store/archive-items/actionCreators';
+import { removeAIFromUser } from '../../store/users/actionCreators';
 import { fetchAllTypes } from '../../store/types/actionCreators';
 import ArchiveItem from '../../../pages/archiveitem';
 
@@ -90,8 +91,11 @@ const ArchiveItemsList = (props) => {
     setOpen(false);
   };
 
+  const deleteAI = (id) => {
+    dispatch(removeAIFromUser(id))
+  }
+
   const listOfArchiveItems = archiveItems.map(item => {
-    console.log("state pic: ", displayPic)
     const pictures = item.pictures;
     const type = item.types;
 
@@ -149,7 +153,7 @@ const ArchiveItemsList = (props) => {
               >
                 <EditIcon />
               </IconButton>
-              <IconButton aria-label="delete archive item">
+              <IconButton aria-label="delete archive item" onClick={() => deleteAI(item.id)}>
                 <DeleteIcon />
               </IconButton>
             </CardActions>

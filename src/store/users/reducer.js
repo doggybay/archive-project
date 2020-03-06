@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
     case constants.EDIT_USER_PENDING:
     case constants.ADD_NEW_USER_PENDING:
     case constants.REMOVE_USER_PENDING:
+    case constants.REMOVE_AI_FROM_USER_PENDING:
       return state
     
     case constants.FETCH_ALL_USERS_FAILED:
@@ -23,6 +24,7 @@ export default (state = initialState, action) => {
     case constants.EDIT_USER_FAILED:
     case constants.ADD_NEW_USER_FAILED:
     case constants.REMOVE_USER_FAILED:
+    case constants.REMOVE_AI_FROM_USER_FAILED:
       return { ...state, err: action.payload}
     
     case constants.FETCH_ALL_USERS_SUCCESS:
@@ -58,6 +60,11 @@ export default (state = initialState, action) => {
         all: state.all.filter(user => user.id !== action.payload.id)
       }
     
+    case constants.REMOVE_AI_FROM_USER_SUCCESS:
+      return {
+        ...state,
+        oneUser: {...state.oneUser, archive_items: state.oneUser.archive_items.filter(item => item.id !== action.payload.id) }
+      }
     default:
       return state
   }

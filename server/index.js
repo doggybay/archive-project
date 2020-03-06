@@ -39,7 +39,7 @@ app.prepare().then(() => {
 
   // importing routes
   const users = require('./routes/users');
-  const archiveItem = require('./routes/archiveItems');
+  const archiveItems = require('./routes/archiveItems');
   const types = require('./routes/types');
 
   // middleware
@@ -52,7 +52,8 @@ app.prepare().then(() => {
   
   // using routes
   server.use('/api', users);
-  server.use('/api', archiveItem);
+  server.use('/api', archiveItems);
+  //server.use('/myarchive/api', archiveItems)
   server.use('/api', types);
 
   // next pass through

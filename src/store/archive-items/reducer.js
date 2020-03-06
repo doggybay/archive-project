@@ -49,7 +49,7 @@ export default (state = initialState, action) => {
     case constants.REMOVE_ARCHIVE_ITEM_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(user => user.id !== action.payload.id)
+        all: state.all.filter(item => item.id !== action.payload.id)
       }
     
     default:

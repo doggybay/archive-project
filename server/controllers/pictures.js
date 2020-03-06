@@ -15,8 +15,6 @@ exports.addNewPicture = async (pictures, archiveId) => {
 
 exports.addPicFromUpdate = async (pictures, Id) => {
   
-  
-
   for (let i = 0; i < pictures.length; i++) {
     
     if (!pictures[i].hasOwnProperty("id")) {
@@ -29,3 +27,9 @@ exports.addPicFromUpdate = async (pictures, Id) => {
     }
   }
 };
+
+exports.deletePictures = async (ids) => {
+  for (let i = 0; i < ids.length; i++) {
+    const deletedPic = Picture.query().deleteById(ids[i]).returning('*')
+  }
+}
