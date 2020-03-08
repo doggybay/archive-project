@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Typography, Button, IconButton, FormControlLabel, Form
 import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import Link from '../../Link';
-import { mainListItems, secondaryListItems } from '../../listItems'
+import { mainListItems } from '../../listItems'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,23 +57,6 @@ const Nav = () => {
         {mainListItems}
       </List>
       <Divider />
-    </div>
-  );
-
-  const fullList = side => (
-    <div
-      className={classes.fullList}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {mainListItems}
-      </List>
-      <Divider />
-      <List>
-        {secondaryListItems}
-      </List>
     </div>
   );
 
