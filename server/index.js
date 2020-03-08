@@ -53,7 +53,7 @@ app.prepare().then(() => {
   // using routes
   server.use('/api', users);
   server.use('/api', archiveItems);
-  //server.use('/myarchive/api', archiveItems)
+  server.use('/myarchive/api', archiveItems)
   server.use('/api', types);
 
   // next pass through
