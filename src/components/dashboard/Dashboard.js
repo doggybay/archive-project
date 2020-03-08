@@ -46,6 +46,7 @@ const Dashboard = () => {
             button
             component={Link}
             href={`/myarchive/categorys?type=${types[i].id}`}
+            as={`/myarchive/${key[0]}`}
           >
             <ListItemText primary={`${catsNLength[0][key]} ${formattedName}`} />
           </ListItem>
