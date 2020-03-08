@@ -26,7 +26,7 @@ const AddArchiveItemSuccess = (props) => {
       <Button variant="contained" color="primary" component={Link} href="/addarchiveitem" className={classes.btn}>
         Add Another
       </Button>
-      <Button variant="contained" color="primary" component={Link} href="/dashboard">
+      <Button variant="contained" color="primary" component={Link} href="/mydashboard">
         Dashboard
       </Button>
     </div>

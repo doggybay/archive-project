@@ -95,8 +95,8 @@ const ArchiveItem = (props) => {
   const listOfPics = pictures.map(picture => {
     
     return (
-      <Grid item>
-        <Card key={picture.id} className={classes.cards} style={{}}>
+      <Grid key={picture.id} item>
+        <Card className={classes.cards} style={{}}>
           <CardMedia
             className={classes.media}
             image={picture.pic}
@@ -106,6 +106,14 @@ const ArchiveItem = (props) => {
       </Grid>
     );
   })
+
+  const listOfDetails = [];
+
+  for (let i = 0; i < 6; i++){
+    listOfDetails.push(
+
+    )
+  }
 
   return (
     <Grid
@@ -122,31 +130,31 @@ const ArchiveItem = (props) => {
       </Paper>
       <Paper elevation={4} className={classes.detailsPaper}>
         <List>
-          <ListItem>
+          <ListItem key={archiveItem.make}>
             <ListItemText primary="Item Make" secondary={archiveItem.make} />
           </ListItem>
-          <ListItem>
+          <ListItem key={archiveItem.model}>
             <ListItemText primary="Item Model" secondary={archiveItem.model} />
           </ListItem>
-          <ListItem>
+          <ListItem key={type}>
             <ListItemText
               primary="Item Categoty"
               secondary={type}
             />
           </ListItem>
-          <ListItem>
+          <ListItem key={archiveItem.serial_num}>
             <ListItemText
               primary="Item Serial Number"
               secondary={archiveItem.serial_num}
             />
           </ListItem>
-          <ListItem>
+          <ListItem key={archiveItem.price}>
             <ListItemText
               primary="Item Price"
               secondary={`$${archiveItem.price}.00`}
             />
           </ListItem>
-          <ListItem>
+          <ListItem key={archiveItem.description}>
             <ListItemText
               primary="Item Description"
               secondary={archiveItem.description}
