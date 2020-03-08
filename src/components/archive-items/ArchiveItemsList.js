@@ -50,8 +50,8 @@ const ArchiveItemsList = (props) => {
     const type = item.types;
 
     return (
-      <Fragment>
-        <Card key={item.id} className={classes.root} style={{}}>
+      <Fragment key={item.id}>
+        <Card className={classes.root} style={{}}>
           <div className={classes.controls}>
             <CardActionArea
               className={classes.action}
@@ -103,7 +103,10 @@ const ArchiveItemsList = (props) => {
               >
                 <EditIcon />
               </IconButton>
-              <IconButton aria-label="delete archive item" onClick={() => deleteAI(item.id)}>
+              <IconButton
+                aria-label="delete archive item"
+                onClick={() => deleteAI(item.id)}
+              >
                 <DeleteIcon />
               </IconButton>
             </CardActions>
