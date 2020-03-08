@@ -46,8 +46,8 @@ const PicturesList = (props) => {
 
   const listOfPics = pictures.map((picture, i) => {
     return (
-      <Grid item sm={12} md={6}>
-        <Card key={i} className={classes.cards} raised>
+      <Grid key={i} item sm={12} md={6}>
+        <Card className={classes.cards} raised>
           <CardMedia
             className={classes.media}
             image={picture.pic}
