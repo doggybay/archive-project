@@ -39,12 +39,12 @@ const CategoryList = ({ archiveItems }) => {
     dispatch(removeAIFromUser(id))
   }
 
-  const listOfArchiveItems = archiveItems.map(item => {
+  const listOfArchiveItems = archiveItems.map((item, i) => {
     const pictures = item.pictures;
 
     return (
-      <Fragment>
-        <Card key={item.id} className={classes.root} style={{}}>
+      <Fragment key={item.id}>
+        <Card className={classes.root}>
           <div className={classes.controls}>
             <CardActionArea
               className={classes.action}
@@ -96,7 +96,10 @@ const CategoryList = ({ archiveItems }) => {
               >
                 <EditIcon />
               </IconButton>
-              <IconButton aria-label="delete archive item" onClick={() => deleteAI(item.id)}>
+              <IconButton
+                aria-label="delete archive item"
+                onClick={() => deleteAI(item.id)}
+              >
                 <DeleteIcon />
               </IconButton>
             </CardActions>
