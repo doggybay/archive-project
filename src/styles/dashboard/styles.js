@@ -27,5 +27,10 @@ export const dashboardStyles = makeStyles(theme => ({
   },
   margin: {
     marginTop: theme.spacing(2)
+  },
+  price: {
+    margin: theme.spacing(7, 7),
+    fontSize: "3rem",
+    color: "#4caf50"
   }
 }));

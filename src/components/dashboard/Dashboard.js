@@ -119,7 +119,7 @@ const Dashboard = () => {
                   Total Value
                 </Typography>
                 <Divider />
-                <Typography className={classes.margin} component="p" variant="h4">
+                <Typography className={classes.price} component="p" variant="h4">
                   ${formattedPrice}
                 </Typography>
               </Paper>
