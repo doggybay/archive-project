@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, FormControlLabel, FormGroup, MenuItem, Menu, Switch, List, Divider, Drawer } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useRouter } from 'next/router';
 import Link from '../../Link';
 import { mainListItems } from '../../listItems'
 
@@ -21,6 +22,8 @@ const useStyles = makeStyles(theme => ({
 
 const Nav = () => {
   const classes = useStyles();
+  const router = useRouter();
+
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const [left, setLeft] = useState(false)
@@ -28,7 +31,13 @@ const Nav = () => {
 
   const handleChange = event => {
     setAuth(event.target.checked);
+    if (!event.target.checked) {
+      router.push("/")
+    } else {
+      router.push("/mydashboard")
+    }
   };
+  
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
