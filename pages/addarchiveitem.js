@@ -45,9 +45,9 @@ const AddArchiveItem = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAllTypes());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchAllTypes());
+  // }, []);
 
 
   const [widget, setWidget] = useState({})
