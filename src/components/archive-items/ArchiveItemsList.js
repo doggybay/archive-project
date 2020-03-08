@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, Grid, Dialog, DialogActions, DialogContent, Button } from '@material-ui/core';
+import { Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, Grid, Dialog, DialogActions, DialogContent, Button } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -12,59 +11,11 @@ import PicturesList from '../pictures/PicturesList'
 import { fetchOneArchiveItem } from '../../store/archive-items/actionCreators';
 import { removeAIFromUser } from '../../store/users/actionCreators';
 import { fetchAllTypes } from '../../store/types/actionCreators';
-import ArchiveItem from '../../../pages/archiveitem';
+import { archiveItemsListStyles } from '../../styles/archiveItems/styles'
 
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    margin: theme.spacing(1),
-    minWidth: theme.spacing(40),
-    maxWidth: theme.spacing(40),
-    minHeight: theme.spacing(20),
-
-    "&:hover": {
-      boxShadow: "-1px 5px 29px 0px rgba(0,0,0,0.5)"
-    }
-  },
-  imgs: {
-    height: 130
-  },
-  action: {
-    width: 151,
-    height: "auto"
-  },
-  details: {
-    display: "flex",
-    flexDirection: "column"
-  },
-  content: {
-    flex: "1 0 auto"
-  },
-  controls: {
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: theme.spacing(2)
-  },
-  media: {
-    height: 140,
-    maxWidth: theme.spacing(16)
-  },
-  paper: {
-    padding: theme.spacing(2),
-    maxWidth: theme.spacing(40),
-    margin: theme.spacing(1)
-  },
-  picDialog: {
-    maxWidth: theme.spacing(60),
-    display: "flex",
-    padding: theme.spacing(2),
-    margin: theme.spacing(1)
-  }
-}));
 
 const ArchiveItemsList = (props) => {
-  const classes = useStyles();
+  const classes = archiveItemsListStyles();
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -72,7 +23,6 @@ const ArchiveItemsList = (props) => {
   const archiveItems = user.hasOwnProperty("id") ? user.archive_items : [];
 
   const [open, setOpen] = useState(false);
-  const [displayPic, setDisplayPic] = useState(0);
 
 
   const getOneArchiveItem = (id) => {
@@ -165,10 +115,7 @@ const ArchiveItemsList = (props) => {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent className={classes.picDialog}>
-            <PicturesList
-              setDisplayPic={setDisplayPic}
-              handleClose={handleClose}
-            />
+            <PicturesList />
           </DialogContent>
 
           <DialogActions>

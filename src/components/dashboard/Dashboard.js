@@ -38,7 +38,11 @@ const Dashboard = () => {
   for (const key in catsNLength[0]) {
     for (let i = 0; i < types.length; i++){
       if (types[i].name === key) {
+        const name = key;
         const formattedName = key[0].toUpperCase() + key.slice(1)
+
+        
+        
         
         listOfLinks.push(
           <ListItem
@@ -46,7 +50,7 @@ const Dashboard = () => {
             button
             component={Link}
             href={`/myarchive/categorys?type=${types[i].id}`}
-            as={`/myarchive/${key[0]}`}
+            as={`/myarchive/${name}`}
           >
             <ListItemText primary={`${catsNLength[0][key]} ${formattedName}`} />
           </ListItem>
@@ -61,7 +65,10 @@ const Dashboard = () => {
   for (let i = 0; i < userArchive.length; i++) {
     totalPrice += userArchive[i].price;
   }
+
+  const formattedPrice = totalPrice.toLocaleString()
   
+
   const formattedPolType = userInsurance.hasOwnProperty("id")
     ? userInsurance.policy_type[0].toUpperCase() +
       userInsurance.policy_type.slice(1)
@@ -112,8 +119,8 @@ const Dashboard = () => {
                   Total Value
                 </Typography>
                 <Divider />
-                <Typography component="p" variant="h4">
-                  ${totalPrice}
+                <Typography className={classes.margin} component="p" variant="h4">
+                  ${formattedPrice}
                 </Typography>
               </Paper>
             </Grid>
@@ -129,10 +136,10 @@ const Dashboard = () => {
                   Insurance Information
                 </Typography>
                 <Divider />
-                <Typography component="p" variant="h4">
+                <Typography className={classes.margin} component="p" variant="h4">
                   {insComp.name}
                 </Typography>
-                <Typography component="p" variant="h6">
+                <Typography className={classes.margin} component="p" variant="h6">
                   Policy #: {userInsurance.policy_num}
                 </Typography>
                 <Typography component="p" variant="h6">

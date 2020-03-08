@@ -23,6 +23,9 @@ export const dashboardStyles = makeStyles(theme => ({
     flexDirection: "column"
   },
   fixedHeight: {
-    height: 240
+    height: 250
+  },
+  margin: {
+    marginTop: theme.spacing(2)
   }
 }));
