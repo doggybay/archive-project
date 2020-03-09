@@ -24,13 +24,14 @@ const Nav = () => {
   const classes = useStyles();
   const router = useRouter();
 
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [left, setLeft] = useState(false)
   const open = Boolean(anchorEl);
 
   const handleChange = event => {
     setAuth(event.target.checked);
+    
     if (!event.target.checked) {
       router.push("/")
     } else {
@@ -45,6 +46,7 @@ const Nav = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    router.push("/myprofile")
   };
 
   const toggleDrawer = (open) => event => {
@@ -73,15 +75,19 @@ const Nav = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
+          {auth && (
+            <div>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </div>
+          )}
           <Typography variant="h6" className={classes.title}>
             Archive
           </Typography>

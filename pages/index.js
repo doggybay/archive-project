@@ -30,9 +30,7 @@ export default function App(props) {
           <Typography variant="h4" component="h1" gutterBottom>
             Welcome to Archive
           </Typography>
-          <Link href="/mydashboard" color="secondary">
-            Go to My Dashboard
-          </Link>
+          
         </Box>
       </Container>
       
