@@ -31,11 +31,11 @@ export default class MyApp extends App {
           />
         </Head>
         <Nav />
-        <CssBaseline />
+
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            
+            <CssBaseline />
             <Component {...pageProps} />
           </ThemeProvider>
         </Provider>
