@@ -5,15 +5,27 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('types').insert([
-        { "name": "electronics" },
-        { "name": "jewlery" },
-        { "name": "cloths" },
-        { "name": "furniture" },
-        { "name": "art" },
-        { "name": "decore" },
-        { "name": "kitchen" },
-        { "name": "tools" },
-        { "name": "bedding" }
+        { "name": "Electronics" },
+        { "name": "Jewelry" },
+        { "name": "Clothes" },
+        { "name": "Furniture" },
+        { "name": "Art" },
+        { "name": "Decore" },
+        { "name": "Kitchen" },
+        { "name": "Tools" },
+        { "name": "Bedding" },
+        { "name": "TV/Video" },
+        { "name": "Home Audio" },
+        { "name": "Camera" },
+        { "name": "TV" },
+        { "name": "Computer" },
+        { "name": "Laptop" },
+        { "name": "Video Games" },
+        { "name": "Cell Phone" },
+        { "name": "Musical Instrument" },
+        { "name": "Headphones" },
+        { "name": "Misc Electronics" },
+        { "name": "Other" }
       ]);
     });
 };
