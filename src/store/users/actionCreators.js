@@ -54,6 +54,24 @@ export const userLogin = (creds, router) => {
   }
 }
 
+export const userLogout = (router) => {
+  
+  return async (dispatch) => {
+    try {
+      dispatch(actions.userLogoutPending())
+
+      dispatch(actions.userLogoutSuccess())
+
+      localStorage.clear();
+      router.push('/')
+      
+    } catch (err) {
+      dispatch(actions.userLoginFailed(err))
+      
+    }
+  }
+}
+
 export const editUser = (id) => {
   return async (dispatch) => {
     try {

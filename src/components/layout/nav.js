@@ -8,6 +8,7 @@ import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useRouter } from 'next/router';
 import Link from '../../Link';
+import { userLogout } from '../../store/users/actionCreators'
 import { mainListItems } from '../../listItems'
 
 const useStyles = makeStyles(theme => ({
@@ -26,6 +27,8 @@ const useStyles = makeStyles(theme => ({
 const Nav = () => {
   const classes = useStyles();
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const userLoggedIn = useSelector(state => state.users.loggedInUser);
 
   
@@ -36,25 +39,10 @@ const Nav = () => {
   const [display, setDisplay] = useState("none")
   const open = Boolean(anchorEl);
 
-  // if (userLoggedIn.hasOwnProperty("id")) {
-  //   setAuth(true)
-  // } else {
-  //   setAuth(false)
-  // }
-  const handleChange = event => {
-    // setAuth(event.target.checked);
-    
-    // if (!event.target.checked) {
-    //   router.push("/")
-    // } else {
-    //   router.push("/mydashboard")
-    // }
-  };
+
   useEffect(() => {
     userLoggedIn.hasOwnProperty('id') ? setAuth(true) : setAuth(false)
-  }, [])
-
-  console.log("nav: ", auth)
+  })
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -64,6 +52,12 @@ const Nav = () => {
     setAnchorEl(null);
     router.push("/myprofile")
   };
+
+  const handleLogout = () => {
+    setAnchorEl(null);
+    setAuth(false)
+    dispatch(userLogout(router))
+  }
 
   const toggleDrawer = (open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -87,7 +81,8 @@ const Nav = () => {
       <Divider />
     </div>
   );
-
+  console.log("nav router: ", router)
+  console.log("nav auth: ", auth)
   return (
     <div className={classes.root} style={{ display: auth ? "" : "none" }}>
       <AppBar position="static">
@@ -109,18 +104,7 @@ const Nav = () => {
             Archive
           </Typography>
 
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={auth}
-                  onChange={handleChange}
-                  aria-label="login switch"
-                />
-              }
-              label={auth ? "Logout" : "Login"}
-            />
-          </FormGroup>
+          
 
           <Drawer open={left} onClose={toggleDrawer(false)}>
             {sideList()}
@@ -153,7 +137,7 @@ const Nav = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>logout</MenuItem>
               </Menu>
             </div>
           )}
@@ -164,3 +148,16 @@ const Nav = () => {
 };
 
 export default Nav
+
+// <FormGroup>
+//             <FormControlLabel
+//               control={
+//                 <Switch
+//                   checked={auth}
+//                   onChange={handleChange}
+//                   aria-label="login switch"
+//                 />
+//               }
+//               label={auth ? "Logout" : "Login"}
+//             />
+//           </FormGroup>
