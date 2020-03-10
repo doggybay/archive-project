@@ -89,6 +89,7 @@ const ArchiveItemsList = (props) => {
                 component={Link}
                 href={`/archiveitem?id=${item.id}`}
                 onClick={() => getOneArchiveItem(item.id)}
+                className={classes.icnBtn}
               >
                 <InfoIcon />
               </IconButton>
@@ -100,6 +101,7 @@ const ArchiveItemsList = (props) => {
                   getAllTypes();
                   getOneArchiveItem(item.id);
                 }}
+                className={classes.icnBtn}
               >
                 <EditIcon />
               </IconButton>

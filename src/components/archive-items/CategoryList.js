@@ -82,6 +82,7 @@ const CategoryList = ({ archiveItems }) => {
                 component={Link}
                 href={`/archiveitem?id=${item.id}`}
                 onClick={() => getOneArchiveItem(item.id)}
+                className={classes.icnBtn}
               >
                 <InfoIcon />
               </IconButton>
@@ -93,6 +94,7 @@ const CategoryList = ({ archiveItems }) => {
                   getAllTypes();
                   getOneArchiveItem(item.id);
                 }}
+                className={classes.icnBtn}
               >
                 <EditIcon />
               </IconButton>
