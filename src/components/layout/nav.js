@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-//import Link from 'next/link'
-
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, IconButton, FormControlLabel, FormGroup, MenuItem, Menu, Switch, List, Divider, Drawer } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, List, Divider, Drawer } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useRouter } from 'next/router';
-import Link from '../../Link';
+
 import { userLogout } from '../../store/users/actionCreators'
 import { mainListItems } from '../../listItems'
 
@@ -31,12 +29,10 @@ const Nav = () => {
 
   const userLoggedIn = useSelector(state => state.users.loggedInUser);
 
-  
-
   const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [left, setLeft] = useState(false)
-  const [display, setDisplay] = useState("none")
+  const [left, setLeft] = useState(false);
+
   const open = Boolean(anchorEl);
 
 
@@ -81,8 +77,7 @@ const Nav = () => {
       <Divider />
     </div>
   );
-  console.log("nav router: ", router)
-  console.log("nav auth: ", auth)
+
   return (
     <div className={classes.root} style={{ display: auth ? "" : "none" }}>
       <AppBar position="static">
@@ -103,8 +98,6 @@ const Nav = () => {
           <Typography variant="h6" className={classes.title}>
             Archive
           </Typography>
-
-          
 
           <Drawer open={left} onClose={toggleDrawer(false)}>
             {sideList()}
@@ -148,16 +141,3 @@ const Nav = () => {
 };
 
 export default Nav
-
-// <FormGroup>
-//             <FormControlLabel
-//               control={
-//                 <Switch
-//                   checked={auth}
-//                   onChange={handleChange}
-//                   aria-label="login switch"
-//                 />
-//               }
-//               label={auth ? "Logout" : "Login"}
-//             />
-//           </FormGroup>
