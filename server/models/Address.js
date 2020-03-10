@@ -6,14 +6,16 @@ class Address extends Model {
     return 'addresses'
   }
 
-  static relationMappings = {
+  static get relationMappings() {
   
-    user: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: User,
-      join: {
-        from: 'Addresses.user_id',
-        to: 'users.id'
+    return {
+      user: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: "Addresses.user_id",
+          to: "users.id"
+        }
       }
     }
   }
