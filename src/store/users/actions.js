@@ -42,6 +42,20 @@ export const userLoginFailed = (err) => ({
   payload: err
 });
 
+export const userLogoutPending = () => ({
+  type: constants.USER_LOGIN_PENDING
+});
+
+export const userLogoutSuccess = () => ({
+  type: constants.USER_LOGIN_SUCCESS,
+  payload: {}
+});
+
+export const userLogoutFailed = err => ({
+  type: constants.USER_LOGIN_FAILED,
+  payload: err
+});
+
 export const addNewUserPending = () => ({
   type: constants.ADD_NEW_USER_PENDING
 });
