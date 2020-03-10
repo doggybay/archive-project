@@ -19,7 +19,7 @@ const knexInstance = require('./db/knex');
 Model.knex(knexInstance);
 
 // port and env declaration
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 const dev = process.env.NODE_ENV !== 'production';
 
 // app instance for next js and request handler for pages in next
