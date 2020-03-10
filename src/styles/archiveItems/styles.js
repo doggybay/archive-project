@@ -47,6 +47,9 @@ export const categoryListStyles = makeStyles(theme => ({
     display: "flex",
     padding: theme.spacing(2),
     margin: theme.spacing(1)
+  },
+  icnBtn: {
+    marginRight: theme.spacing(.2)
   }
 }));
 
@@ -95,5 +98,8 @@ export const archiveItemsListStyles = makeStyles(theme => ({
     display: "flex",
     padding: theme.spacing(2),
     margin: theme.spacing(1)
+  },
+  icnBtn: {
+    marginRight: theme.spacing(.2)
   }
 }));
