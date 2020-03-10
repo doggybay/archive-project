@@ -46,7 +46,7 @@ const Dashboard = () => {
         
         listOfLinks.push(
           <ListItem
-            key={key[0]}
+            key={key}
             button
             component={Link}
             href={`/myarchive/categorys?type=${types[i].id}`}

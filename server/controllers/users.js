@@ -79,7 +79,6 @@ exports.authUser = async (req, res) => {
       .withGraphFetched(
         "[addresses, user_insurances.[insurance_companys], archive_items.[types, pictures]]"
     );
-    console.log("user: ", user)
     
     res.json(user)
   } else {
