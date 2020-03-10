@@ -7,11 +7,11 @@ import { fetchAllTypes } from '../../src/store/types/actionCreators'
 
 const MyDashboard = () => {
   const dispatch = useDispatch();
-
+  const userLoggedIn = useSelector(state => state.users.loggedInUser);
 
 
   useEffect(() => {
-    dispatch(fetchOneUser(1));
+    dispatch(fetchOneUser(userLoggedIn.id));
     dispatch(fetchAllTypes())
   }, []);
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
@@ -9,10 +9,10 @@ import { fetchOneUser } from '../../src/store/users/actionCreators';
 
 const MyArchive = (props) => {
   const dispatch = useDispatch()
+  const userLoggedIn = useSelector(state => state.users.loggedInUser);
 
   useEffect(() => {
-    // dispatch(fetchAllArchiveItems())
-    dispatch(fetchOneUser(1));
+    dispatch(fetchOneUser(userLoggedIn.id));
   }, [])
 
   return (
