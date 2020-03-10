@@ -30,10 +30,10 @@ export default class MyApp extends App {
             content="minimum-scale=1, initial-scale=1, width=device-width"
           />
         </Head>
-        <Nav />
-
+        
         <Provider store={store}>
           <ThemeProvider theme={theme}>
+            <Nav />
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <Component {...pageProps} />
