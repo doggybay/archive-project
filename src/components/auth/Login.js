@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, TextField, Paper, Box, Grid, Typography } from '@material-ui/core';
-import { makeStyles } from "@material-ui/core/styles";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '../../Link';
+import { makeStyles } from '@material-ui/core/styles';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ArchiveImageColorful from '../assets/images/ArchiveImageColorful'
-import { Email } from '@material-ui/icons';
+import { userLogin } from '../../store/users/actionCreators'
 
 
 const useStyles = makeStyles(theme => ({
@@ -57,18 +55,24 @@ const useStyles = makeStyles(theme => ({
 
 const Login = () => {
   const classes = useStyles();
+  const dispatch = useDispatch()
   const router = useRouter();
 
-  const [email, setEmail] = useState("");
+  const [state, setState] = useState({
+    email: ""
+  });
 
-  const handleChange = e => {
-    setEmail(e.target.value)
+  const handleChange = name => e => {
+    setState({
+      ...state,
+      [name]: e.target.value
+    })
   }
-
   const handleSubmit = e => {
     e.preventDefault()
+    dispatch(userLogin(state, router))
   }
-  console.log(email)
+  
   return (
     <Grid container component="main" className={classes.root}>
       <Grid item xs={12} sm={4} md={7} className={classes.image}>
@@ -91,7 +95,7 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={handleChange}
+              onChange={handleChange("email")}
             />
 
             <Button

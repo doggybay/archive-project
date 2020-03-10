@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 //import Link from 'next/link'
+
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, FormControlLabel, FormGroup, MenuItem, Menu, Switch, List, Divider, Drawer } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
@@ -11,6 +13,7 @@ import { mainListItems } from '../../listItems'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -23,22 +26,35 @@ const useStyles = makeStyles(theme => ({
 const Nav = () => {
   const classes = useStyles();
   const router = useRouter();
+  const userLoggedIn = useSelector(state => state.users.loggedInUser);
+
+  
 
   const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [left, setLeft] = useState(false)
+  const [display, setDisplay] = useState("none")
   const open = Boolean(anchorEl);
 
+  // if (userLoggedIn.hasOwnProperty("id")) {
+  //   setAuth(true)
+  // } else {
+  //   setAuth(false)
+  // }
   const handleChange = event => {
-    setAuth(event.target.checked);
+    // setAuth(event.target.checked);
     
-    if (!event.target.checked) {
-      router.push("/")
-    } else {
-      router.push("/mydashboard")
-    }
+    // if (!event.target.checked) {
+    //   router.push("/")
+    // } else {
+    //   router.push("/mydashboard")
+    // }
   };
-  
+  useEffect(() => {
+    userLoggedIn.hasOwnProperty('id') ? setAuth(true) : setAuth(false)
+  }, [])
+
+  console.log("nav: ", auth)
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -63,6 +79,7 @@ const Nav = () => {
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
+      
     >
       <List>
         {mainListItems}
@@ -72,7 +89,7 @@ const Nav = () => {
   );
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ display: auth ? "" : "none" }}>
       <AppBar position="static">
         <Toolbar>
           {auth && (
