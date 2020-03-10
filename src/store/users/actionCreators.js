@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useRouter } from 'next/router';
+
 import * as actions from './actions'
 
 //import BASE_URL from '../location'
@@ -34,8 +34,7 @@ export const fetchOneUser = (id) => {
   }
 }
 
-export const userLogin = (creds) => {
-  const router = useRouter();
+export const userLogin = (creds, router) => {
   
   return async (dispatch) => {
     try {
@@ -44,8 +43,10 @@ export const userLogin = (creds) => {
       const res = await axios.post(`api/users/login`, creds)
 
       dispatch(actions.userLoginSuccess(res.data))
+
       localStorage.setItem("loggedInUser", JSON.stringify(res.data));
       router.push('/mydashboard')
+      
     } catch (err) {
       dispatch(actions.userLoginFailed(err))
       router.push('/')
