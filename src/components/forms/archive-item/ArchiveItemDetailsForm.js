@@ -55,6 +55,7 @@ const ArchiveItemDetailsForm = (props) => {
               size="small"
               value={state.serial_num}
               onChange={handleChange("serial_num")}
+              required
             />
           </Grid>
           <Grid item>
@@ -66,6 +67,7 @@ const ArchiveItemDetailsForm = (props) => {
               size="small"
               value={state.price}
               onChange={handleChange("price")}
+              required
             />
           </Grid>
           <Grid item>
@@ -78,6 +80,7 @@ const ArchiveItemDetailsForm = (props) => {
               size="small"
               value={state.description}
               onChange={handleChange("description")}
+              required
             />
           </Grid>
         </Grid>

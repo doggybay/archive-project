@@ -73,6 +73,7 @@ const ArchiveItemBasicForm = (props) => {
               size="small"
               value={state.make}
               onChange={handleChange("make")}
+              required
             />
           </Grid>
           <Grid item>
@@ -84,6 +85,7 @@ const ArchiveItemBasicForm = (props) => {
               size="small"
               value={state.model}
               onChange={handleChange("model")}
+              required
             />
           </Grid>
           <Grid item>
@@ -96,6 +98,7 @@ const ArchiveItemBasicForm = (props) => {
                 value={state.type}
                 onChange={handleChange("type_id")}
                 labelWidth={labelWidth}
+                
               >
                 <option value="" />
 
