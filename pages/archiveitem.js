@@ -1,44 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useRouter } from 'next/router'
-import { Container, Paper, Typography, Grid, Card, CardActionArea, CardActions, CardContent, CardMedia, List, ListItem, ListItemText, } from '@material-ui/core'
+import { useSelector } from 'react-redux';
+import { useTheme } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
+import { Paper, Grid, Card, CardMedia, List, ListItem, ListItemText, } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  cards: {
-    width: theme.spacing(16),
-    margin: theme.spacing(2),
-  },
-  grid: {
-  },
-  media: {
-    height: 140,
-    maxWidth: theme.spacing(16)
-  },
-  paper: {
-    width: "auto",
-    margin: theme.spacing(1),
-    marginTop: theme.spacing(3)
-  },
-  picGrid: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-evenly"
-  },
-  gridItem: {
-    minWidth: theme.spacing(45)
-  },
-  detailsPaper: {
-    
-    maxWidth: theme.spacing(90),
-    margin: theme.spacing(1)
-  },
-  detailsTitle: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  }
-}));
+import { archiveItemStyles } from '../src/styles/archiveItems/styles';
+
 
 const staticArchiveItem = () => ({
   id: 60,
@@ -81,9 +48,7 @@ const staticArchiveItem = () => ({
 const ArchiveItem = (props) => {
   const hcai = staticArchiveItem()
   const data = useSelector(state => state.archiveItems.oneArchiveItem);
-  const router = useRouter();
-  const classes = useStyles();
-  const theme = useTheme();
+  const classes = archiveItemStyles();
 
   const archiveItem = data.hasOwnProperty('id') ? data : hcai;
 
@@ -106,14 +71,6 @@ const ArchiveItem = (props) => {
       </Grid>
     );
   })
-
-  const listOfDetails = [];
-
-  for (let i = 0; i < 6; i++){
-    listOfDetails.push(
-
-    )
-  }
 
   return (
     <Grid

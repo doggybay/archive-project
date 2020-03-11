@@ -103,3 +103,36 @@ export const archiveItemsListStyles = makeStyles(theme => ({
     marginRight: theme.spacing(.2)
   }
 }));
+
+export const archiveItemStyles = makeStyles(theme => ({
+  cards: {
+    width: theme.spacing(16),
+    margin: theme.spacing(2)
+  },
+  media: {
+    height: 140,
+    maxWidth: theme.spacing(16)
+  },
+  paper: {
+    width: "auto",
+    margin: theme.spacing(1),
+    marginTop: theme.spacing(3)
+  },
+  picGrid: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
+  },
+  gridItem: {
+    minWidth: theme.spacing(45)
+  },
+  detailsPaper: {
+    maxWidth: theme.spacing(90),
+    margin: theme.spacing(1)
+  },
+  detailsTitle: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  }
+}));
