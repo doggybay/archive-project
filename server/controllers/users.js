@@ -66,3 +66,23 @@ exports.removeUser = async (req, res) => {
   const formattedUser = { ...deletedUser, address:  [...deletedAddress ]}
   res.json(formattedUser);
 };
+
+exports.authUser = async (req, res) => {
+  const { email } = req.body
+  const data = await User.query().select('*').where('email', '=', email)
+
+  
+  if (data.length > 0 && data[0].hasOwnProperty('id')) {
+
+    const user = await User.query()
+      .findById(data[0].id)
+      .withGraphFetched(
+        "[addresses, user_insurances.[insurance_companys], archive_items.[types, pictures]]"
+    );
+    
+    res.json(user)
+  } else {
+    res.status(401).end(`Not Authorized`);
+  }
+
+}

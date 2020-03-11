@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
-//import Link from 'next/link'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, IconButton, FormControlLabel, FormGroup, MenuItem, Menu, Switch, List, Divider, Drawer } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, List, Divider, Drawer } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useRouter } from 'next/router';
-import Link from '../../Link';
+
+import { userLogout } from '../../store/users/actionCreators'
 import { mainListItems } from '../../listItems'
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -23,21 +25,24 @@ const useStyles = makeStyles(theme => ({
 const Nav = () => {
   const classes = useStyles();
   const router = useRouter();
+  const dispatch = useDispatch();
+  
 
-  const [auth, setAuth] = useState(true);
+  const userLoggedIn = useSelector(state => state.users.loggedInUser);
+
+  const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [left, setLeft] = useState(false)
+  const [left, setLeft] = useState(false);
+  
+
   const open = Boolean(anchorEl);
 
-  const handleChange = event => {
-    setAuth(event.target.checked);
-    if (!event.target.checked) {
-      router.push("/")
-    } else {
-      router.push("/mydashboard")
-    }
-  };
-  
+
+  useEffect(() => {
+    userLoggedIn.hasOwnProperty('id') ? setAuth(true) : setAuth(false)
+    
+  },)
+
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -45,7 +50,14 @@ const Nav = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    router.push("/myprofile")
   };
+
+  const handleLogout = () => {
+    setAnchorEl(null);
+    setAuth(false)
+    dispatch(userLogout(router))
+  }
 
   const toggleDrawer = (open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -61,6 +73,7 @@ const Nav = () => {
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
+      
     >
       <List>
         {mainListItems}
@@ -69,35 +82,28 @@ const Nav = () => {
     </div>
   );
 
+  
+
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ display: auth ? "" : "none" }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
+          {auth && (
+            <div>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </div>
+          )}
           <Typography variant="h6" className={classes.title}>
             Archive
           </Typography>
-
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={auth}
-                  onChange={handleChange}
-                  aria-label="login switch"
-                />
-              }
-              label={auth ? "Logout" : "Login"}
-            />
-          </FormGroup>
 
           <Drawer open={left} onClose={toggleDrawer(false)}>
             {sideList()}
@@ -130,7 +136,7 @@ const Nav = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>logout</MenuItem>
               </Menu>
             </div>
           )}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Link from '../../src/Link';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Paper, Grid } from '@material-ui/core/';
@@ -42,10 +42,11 @@ const useStyles = makeStyles(theme => ({
 const AddToMyArchive = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const userLoggedIn = useSelector(state => state.users.loggedInUser);
 
   useEffect(() => {
     dispatch(fetchAllTypes());
-    dispatch(fetchOneUser(1));
+    dispatch(fetchOneUser(userLoggedIn.id));
   }, []);
 
 
