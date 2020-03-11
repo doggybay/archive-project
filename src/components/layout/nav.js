@@ -26,19 +26,23 @@ const Nav = () => {
   const classes = useStyles();
   const router = useRouter();
   const dispatch = useDispatch();
+  
 
   const userLoggedIn = useSelector(state => state.users.loggedInUser);
 
   const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [left, setLeft] = useState(false);
+  
 
   const open = Boolean(anchorEl);
 
 
   useEffect(() => {
     userLoggedIn.hasOwnProperty('id') ? setAuth(true) : setAuth(false)
-  })
+    
+  },)
+
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -77,6 +81,8 @@ const Nav = () => {
       <Divider />
     </div>
   );
+
+  
 
   return (
     <div className={classes.root} style={{ display: auth ? "" : "none" }}>
