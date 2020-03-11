@@ -4,8 +4,8 @@ import { Button, TextField, Paper, Box, Grid, Typography } from '@material-ui/co
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ArchiveImageColorful from '../assets/images/ArchiveImageColorful'
-import { userLogin } from '../../store/users/actionCreators'
+import ArchiveImageColorful from '../../assets/images/ArchiveImageColorful'
+import { userLogin } from '../../../store/users/actionCreators'
 
 
 const useStyles = makeStyles(theme => ({

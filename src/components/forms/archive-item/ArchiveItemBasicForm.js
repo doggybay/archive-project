@@ -73,6 +73,7 @@ const ArchiveItemBasicForm = (props) => {
               size="small"
               value={state.make}
               onChange={handleChange("make")}
+              required
             />
           </Grid>
           <Grid item>
@@ -84,6 +85,7 @@ const ArchiveItemBasicForm = (props) => {
               size="small"
               value={state.model}
               onChange={handleChange("model")}
+              required
             />
           </Grid>
           <Grid item>
@@ -96,6 +98,7 @@ const ArchiveItemBasicForm = (props) => {
                 value={state.type}
                 onChange={handleChange("type_id")}
                 labelWidth={labelWidth}
+                
               >
                 <option value="" />
 
@@ -113,7 +116,7 @@ const ArchiveItemBasicForm = (props) => {
         activeStep={step}
         className={classes.stepper}
         nextButton={
-          <Button size="small" onClick={continueStep} disabled={step === 5}>
+          <Button size="small" onClick={continueStep} disabled={step === 5 || state.make === "" || state.model === "" || state.type === ""}>
             Next
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
