@@ -113,7 +113,7 @@ const ArchiveItemBasicForm = (props) => {
         activeStep={step}
         className={classes.stepper}
         nextButton={
-          <Button size="small" onClick={continueStep} disabled={step === 5}>
+          <Button size="small" onClick={continueStep} disabled={step === 5 || state.make === "" || state.model === "" || state.type === ""}>
             Next
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />

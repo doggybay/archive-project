@@ -73,7 +73,7 @@ const ArchiveItemPicturesForm = ({ widget, state, removePic, step, nextStep, pre
         activeStep={step}
         className={classes.stepper}
         nextButton={
-          <Button size="small" onClick={continueStep} disabled={step === 5}>
+          <Button size="small" onClick={continueStep} disabled={step === 5 || state.pictures.length < 1}>
             Next
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
