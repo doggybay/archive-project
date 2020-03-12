@@ -6,8 +6,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import users from './users/reducer'
 import archiveItems from './archive-items/reducer'
 import types from './types/reducer'
+import insuranceCompanys from './insurance-companys/reducer'
 
-const rootReducer = combineReducers({ users, archiveItems, types })
+const rootReducer = combineReducers({ users, archiveItems, types, insuranceCompanys })
 
 const middleware = [thunk, logger]
 

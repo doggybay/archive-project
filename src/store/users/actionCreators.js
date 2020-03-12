@@ -49,7 +49,7 @@ export const userLogin = (creds, router) => {
       
     } catch (err) {
       dispatch(actions.userLoginFailed(err))
-      router.push('/')
+      router.push('/register')
     }
   }
 }
@@ -87,17 +87,21 @@ export const editUser = (id) => {
   }
 }
 
-export const addNewUser = () => {
+export const addNewUser = (newUser, router) => {
   return async (dispatch) => {
     try {
       dispatch(actions.addNewUserPending())
 
-      const res = await axios.post(`api/users`)
+      const res = await axios.post(`api/users`, newUser)
 
       dispatch(actions.addNewUserSuccess(res.data))
+      localStorage.setItem("loggedInUser", JSON.stringify(res.data));
+      router.push("/mydashboard");
+      dispatch(actions.userLoginSuccess(res.data))
 
     } catch (err) {
       dispatch(actions.addNewUserFailed(err))
+      router.push('/register')
 
     }
   }

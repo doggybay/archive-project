@@ -23,7 +23,7 @@ class Address extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['user_id', 'stAddress', 'city', 'state', 'zipCode'],
+      required: ['user_id', 'st_address', 'city', 'state', 'zip_code'],
 
       properties: {
         id: { type: 'integer' },
