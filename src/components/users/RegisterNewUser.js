@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,6 +17,7 @@ import AddressForm from '../forms/users/AddressForm';
 import InsuranceDetailsForm from '../forms/users/InsuranceDetailsForm'
 import Review from '../forms/users/Review';
 import { fetchAllInsuranceCompanys } from '../../store/insurance-companys/actionCreators'
+import { addNewUser } from '../../store/users/actionCreators'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -72,6 +74,7 @@ function getStepContent(step, state, setState, insPhone, setInsPhone, insName, s
 const RegisterNewUser = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(fetchAllInsuranceCompanys());
@@ -98,7 +101,7 @@ const RegisterNewUser = () => {
   const [insName, setInsName] = useState("");
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
-      console.log('heard')
+      dispatch(addNewUser(state, router))
     } else {
       setActiveStep(activeStep + 1);
     }

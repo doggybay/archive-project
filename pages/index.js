@@ -13,7 +13,7 @@ const [localUser, setLocalUser] = useState({});
 
   return (
     <Fragment>
-      <RegisterNewUser />
+      <Login />
       
     </Fragment>
   );

@@ -8,3 +8,5 @@ const Register = () => {
     <RegisterNewUser />
   )
 }
+
+export default Register;
