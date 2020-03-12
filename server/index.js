@@ -41,6 +41,7 @@ app.prepare().then(() => {
   const users = require('./routes/users');
   const archiveItems = require('./routes/archiveItems');
   const types = require('./routes/types');
+  const insuranceCompanys = require('./routes/insuranceCompanys')
 
   // middleware
   server.use(logger('dev'));
@@ -55,6 +56,7 @@ app.prepare().then(() => {
   server.use('/api', archiveItems);
   server.use('/myarchive/api', archiveItems)
   server.use('/api', types);
+  server.use('/api', insuranceCompanys)
 
   // next pass through
   server.all('*', (req, res) => {

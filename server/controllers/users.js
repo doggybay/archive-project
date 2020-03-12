@@ -17,8 +17,14 @@ exports.getOneUser = async (req, res) => {
 exports.addUser = async (req, res) => {
   
   const user = { ...req.body }
-
-  const addressInBody = user.address[0]
+  const {st_address, opt_address, city, state, zip_code} = user
+  const addressInBody = {
+    st_address,
+    opt_address,
+    city,
+    state,
+    zip_code
+  }
 
   const formattedUser = {
     first_name: user.first_name,

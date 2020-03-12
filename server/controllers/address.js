@@ -3,12 +3,8 @@ const Address = require('../models/Address');
 exports.addNewAddress = async (address, userId ) => {
 
   const formattedAddress = {
-    user_id: userId,
-    st_sddress: address.stAddress,
-    opt_address: address.optAddress,
-    city: address.city,
-    state: address.state,
-    zip_code: address.zipCode
+    ...address,
+    user_id: userId
   };
   const newAddress = await Address.query()
     .insert(formattedAddress)
