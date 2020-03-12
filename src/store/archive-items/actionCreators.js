@@ -47,7 +47,7 @@ export const editArchiveItem = (id, item) => {
   }
 }
 
-export const addNewArchiveItem = (newArchiveItem) => {
+export const addNewArchiveItem = (newArchiveItem, router) => {
   return async (dispatch) => {
     try {
       dispatch(actions.addNewArchiveItemPending())
@@ -56,8 +56,12 @@ export const addNewArchiveItem = (newArchiveItem) => {
 
       dispatch(actions.addNewArchiveItemSuccess(res.data))
 
+      router.push("/addtomyarchive/success")
+
     } catch (err) {
       dispatch(actions.addNewArchiveItemFailed(err))
+
+      router.push("/addtomyarchive")
 
     }
   }

@@ -125,9 +125,9 @@ const AddArchiveItem = () => {
     e.preventDefault();
     const newArchiveItem = { ...state, user_id: 1, type_id: Number(state.type_id), price: Number(state.price) }
 
-    dispatch(addNewArchiveItem(newArchiveItem))
+    dispatch(addNewArchiveItem(newArchiveItem, router))
     
-    router.push("/addtomyarchive/success")
+    // router.push("/addtomyarchive/success");
   }
 
   const removePic = (pic) => {

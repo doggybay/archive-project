@@ -57,6 +57,7 @@ app.prepare().then(() => {
   server.use('/myarchive/api', archiveItems)
   server.use('/api', types);
   server.use('/api', insuranceCompanys)
+  server.use('/addtomyarchive/api', archiveItems);
 
   // next pass through
   server.all('*', (req, res) => {

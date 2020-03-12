@@ -139,15 +139,16 @@ const Dashboard = () => {
                 <Typography className={classes.margin} component="p" variant="h4">
                   {insComp.name}
                 </Typography>
+                <Typography component="p" variant="h6">
+                  Claims #: {insComp.phone}
+                </Typography>
                 <Typography className={classes.margin} component="p" variant="h6">
                   Policy #: {userInsurance.policy_num}
                 </Typography>
                 <Typography component="p" variant="h6">
                   Policy Type: {formattedPolType}
                 </Typography>
-                <Typography component="p" variant="h6">
-                  Claims #: {insComp.phone}
-                </Typography>
+                
               </Paper>
             </Grid>
           </Grid>
