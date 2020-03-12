@@ -1,5 +1,6 @@
 const User = require('../models/User');
-const addressController = require('./address')
+const addressController = require('./address');
+const userInsurancesController = require('./userInsurance');
 
 exports.getAllUsers = async (req, res) => {
   const users = await User.query().withGraphFetched('[addresses, user_insurances.[insurance_companys], archive_items]');
@@ -17,8 +18,14 @@ exports.getOneUser = async (req, res) => {
 exports.addUser = async (req, res) => {
   
   const user = { ...req.body }
-
-  const addressInBody = user.address[0]
+  const {st_address, opt_address, city, state, zip_code} = user
+  const addressInBody = {
+    st_address,
+    opt_address,
+    city,
+    state,
+    zip_code
+  }
 
   const formattedUser = {
     first_name: user.first_name,
@@ -27,13 +34,19 @@ exports.addUser = async (req, res) => {
     phone: user.phone
   };
 
+  const formattedUserInsurance = {
+    ...user.user_insurances
+  }
+
   const newUser = await User.query()
     .insert(formattedUser)
     .returning('*');
   
+  
   addressController.addNewAddress(addressInBody, newUser.id)
+  userInsurancesController.addNewUserInsurance(formattedUserInsurance, newUser.id)
 
-  const formattedNewUser = await User.query().findById(newUser.id).withGraphFetched('[addresses]');
+  const formattedNewUser = await User.query().findById(newUser.id).withGraphFetched('[addresses, user_insurances]');
   
   res.json(formattedNewUser);
 };
