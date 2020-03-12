@@ -35,8 +35,6 @@ const useStyles = makeStyles(theme => ({
 const Review = ({ state, insName, insPhone }) => {
   const classes = useStyles();
 
-  console.log("review: ", state)
-
   return (
     <Fragment>
       <Typography variant="h6" gutterBottom>
