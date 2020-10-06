@@ -3,7 +3,7 @@ let connectionString = process.platform === 'win32' ? 'postgres://db_access:free
   module.exports = {
     development: {
         client: 'pg',
-        connection: connectionString,
+      connection: 'postgres://db_access:freedom@192.168.10.121/inventory-project',
         migrations: {
             directory: __dirname + '/server/db/migrations',
           },
