@@ -12,9 +12,9 @@ RUN npm install
 
 COPY --chown=node:node . .
 
-RUN npm run migrate
+# RUN npm run migrate
 
-RUN npm run seed
+# RUN npm run seed
 
 EXPOSE 8000
 
