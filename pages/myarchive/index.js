@@ -10,6 +10,7 @@ import { fetchOneUser } from '../../src/store/users/actionCreators';
 const MyArchive = (props) => {
   const dispatch = useDispatch()
   const userLoggedIn = useSelector(state => state.users.loggedInUser);
+  console.log('')
 
   useEffect(() => {
     dispatch(fetchOneUser(userLoggedIn.id));

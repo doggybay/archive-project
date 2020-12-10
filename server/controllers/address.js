@@ -4,6 +4,7 @@ exports.addNewAddress = async (address, userId ) => {
 
   const formattedAddress = {
     ...address,
+    zip_code: Number(address.zipCode),
     user_id: userId
   };
   const newAddress = await Address.query()
@@ -20,7 +21,7 @@ exports.updateAddress = async (address) => {
     opt_address: address.optAddress,
     city: address.city,
     state: address.state,
-    zip_code: address.zipCode
+    zip_code: Number(address.zipCode)
   };
 
   // TODO

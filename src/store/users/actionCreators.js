@@ -1,8 +1,5 @@
 import axios from 'axios'
-
 import * as actions from './actions'
-
-//import BASE_URL from '../location'
 
 const BASE_URL = `http//localhost:8000/api`
 

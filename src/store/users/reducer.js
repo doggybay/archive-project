@@ -4,6 +4,7 @@ let initialState = {
   all: [],
   oneUser: {},
   loggedInUser: {},
+  loading: false,
   err: {}
 }
 
@@ -11,13 +12,15 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case constants.FETCH_ALL_USERS_PENDING:
     case constants.FETCH_ONE_USER_PENDING:
-    case constants.USER_LOGIN_PENDING:
+
     case constants.USER_LOGOUT_PENDING:
     case constants.EDIT_USER_PENDING:
     case constants.ADD_NEW_USER_PENDING:
     case constants.REMOVE_USER_PENDING:
     case constants.REMOVE_AI_FROM_USER_PENDING:
       return state;
+    case constants.USER_LOGIN_PENDING:
+      return { ...state, loading: true };
 
     case constants.FETCH_ALL_USERS_FAILED:
     case constants.FETCH_ONE_USER_FAILED:
@@ -36,7 +39,7 @@ export default (state = initialState, action) => {
       return { ...state, oneUser: action.payload };
 
     case constants.USER_LOGIN_SUCCESS:
-      return { ...state, loggedInUser: action.payload };
+      return { ...state, loggedInUser: action.payload, loading: false };
 
     case constants.USER_LOGOUT_SUCCESS:
       return { ...state, loggedInUser: action.payload };
@@ -56,13 +59,13 @@ export default (state = initialState, action) => {
             }
           }
           return newUsers;
-        }, [])
+        }, []),
       };
 
     case constants.REMOVE_USER_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(user => user.id !== action.payload.id)
+        all: state.all.filter((user) => user.id !== action.payload.id),
       };
 
     case constants.REMOVE_AI_FROM_USER_SUCCESS:
@@ -71,9 +74,9 @@ export default (state = initialState, action) => {
         oneUser: {
           ...state.oneUser,
           archive_items: state.oneUser.archive_items.filter(
-            item => item.id !== action.payload.id
-          )
-        }
+            (item) => item.id !== action.payload.id
+          ),
+        },
       };
     default:
       return state;

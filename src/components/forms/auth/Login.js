@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Button, TextField, Paper, Box, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
+import { signin, signout, useSession } from 'next-auth/client';
 
 import ArchiveImageColorful from '../../assets/images/ArchiveImageColorful'
 import { userLogin } from '../../../store/users/actionCreators'
@@ -58,65 +59,46 @@ const Login = () => {
   const dispatch = useDispatch()
   const router = useRouter();
 
-  const [state, setState] = useState({
-    email: ""
-  });
+  const [session, loading] = useSession();
+  const userLoggedIn = useSelector((state) => state.users.loggedInUser);
+  
 
-  const handleChange = name => e => {
-    setState({
-      ...state,
-      [name]: e.target.value
-    })
-  }
-  const handleSubmit = e => {
-    e.preventDefault()
-    dispatch(userLogin(state, router))
-  }
+  const googleAuth = (e) => {
+    e.preventDefault();
+    signin(null, { callbackUrl: "http://localhost:3000/" });
+  };
+
   
   return (
-    <Grid container component="main" className={classes.root}>
-      <Grid item xs={12} sm={4} md={7} className={classes.image}>
-        <ArchiveImageColorful classes={classes} />
-      </Grid>
-
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <form onSubmit={handleSubmit} className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              onChange={handleChange("email")}
-            />
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
-            </Button>
+    <div style={{ display: loading ? "none" : "" }}>
+      <Grid container component="main" className={classes.root}>
+        <Grid item xs={12} sm={4} md={7} className={classes.image}>
+          <ArchiveImageColorful classes={classes} />
+        </Grid>
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
             <Grid container>
               <Grid item xs>
-                
+                <a href="/api/auth/signin" onClick={(e) => googleAuth(e)}>
+                  <Button
+                    type="button"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    >
+                    Sign In
+                  </Button>
+                </a>
               </Grid>
             </Grid>
-            <Box mt={5}></Box>
-          </form>
-        </div>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 }
 

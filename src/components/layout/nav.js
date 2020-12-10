@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, List, Divider,
 import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useRouter } from 'next/router';
-
+import { signout, useSession } from "next-auth/client";
 import { userLogout } from '../../store/users/actionCreators'
 import { mainListItems } from '../../listItems'
 
@@ -27,6 +27,7 @@ const Nav = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   
+  const [session, loading] = useSession();
 
   const userLoggedIn = useSelector(state => state.users.loggedInUser);
 
@@ -57,6 +58,8 @@ const Nav = () => {
     setAnchorEl(null);
     setAuth(false)
     dispatch(userLogout(router))
+    console.log('nav-logout: ', )
+    signout()
   }
 
   const toggleDrawer = (open) => event => {
@@ -82,7 +85,7 @@ const Nav = () => {
     </div>
   );
 
-  
+  // console.log('nav: ', session)
 
   return (
     <div className={classes.root} style={{ display: auth ? "" : "none" }}>

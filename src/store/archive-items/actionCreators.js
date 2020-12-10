@@ -9,7 +9,7 @@ export const fetchAllArchiveItems = () => {
     try {
       dispatch(actions.fetchAllArchiveItemsPending())
 
-      const res = await axios.get(`api/archive-items`)
+      const res = await axios.get(`${BASE_URL}/archive-items`);
 
       dispatch(actions.fetchAllArchiveItemsSuccess(res.data))
     } catch (err) {
@@ -23,7 +23,7 @@ export const fetchOneArchiveItem = (id) => {
     try {
       dispatch(actions.fetchOneArchiveItemPending())
 
-      const res = await axios.get(`api/archive-items/${id}`)
+      const res = await axios.get(`${BASE_URL}/archive-items/${id}`);
 
       dispatch(actions.fetchOneArchiveItemSuccess(res.data))
     } catch (err) {
@@ -37,7 +37,7 @@ export const editArchiveItem = (id, item) => {
     try {
       dispatch(actions.editArchiveItemPending())
 
-      const res = await axios.patch(`api/archive-items/${id}`, item)
+      const res = await axios.patch(`${BASE_URL}/archive-items/${id}`, item);
 
       dispatch(actions.editArchiveItemSuccess(res.data))
 
@@ -52,7 +52,7 @@ export const addNewArchiveItem = (newArchiveItem, router) => {
     try {
       dispatch(actions.addNewArchiveItemPending())
 
-      const res = await axios.post(`api/archive-items`, newArchiveItem)
+      const res = await axios.post(`${BASE_URL}/archive-items`, newArchiveItem)
 
       dispatch(actions.addNewArchiveItemSuccess(res.data))
 
@@ -72,7 +72,7 @@ export const removeArchiveItem = (id) => {
     try {
       dispatch(actions.removeArchiveItemPending())
 
-      const res = await axios.delete(`api/archive-items/${id}`)
+      const res = await axios.delete(`${BASE_URL}/archive-items/${id}`);
 
       dispatch(actions.removeArchiveItemSuccess(res.data))
 
