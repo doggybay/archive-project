@@ -6,8 +6,9 @@ import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useRouter } from 'next/router';
 import { signout, useSession } from "next-auth/client";
-import { userLogout } from '../../store/users/actionCreators'
-import { mainListItems } from '../../listItems'
+import { userLogout } from '../../store/users/actionCreators';
+import { mainListItems } from '../../listItems';
+import Link from '../../Link';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,7 +43,7 @@ const Nav = () => {
   useEffect(() => {
     userLoggedIn.hasOwnProperty('id') ? setAuth(true) : setAuth(false)
     
-  },)
+  },[userLoggedIn])
 
 
   const handleMenu = event => {
@@ -88,7 +89,7 @@ const Nav = () => {
   // console.log('nav: ', session)
 
   return (
-    <div className={classes.root} style={{ display: auth ? "" : "none" }}>
+    <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           {auth && (
@@ -104,7 +105,7 @@ const Nav = () => {
               </IconButton>
             </div>
           )}
-          <Typography variant="h6" className={classes.title}>
+          <Typography align="center" variant="h6" className={classes.title}>
             Archive
           </Typography>
 
@@ -121,6 +122,7 @@ const Nav = () => {
                 onClick={handleMenu}
                 color="inherit"
               >
+                {}
                 <AccountCircle />
               </IconButton>
               <Menu
@@ -128,12 +130,12 @@ const Nav = () => {
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: "top",
-                  horizontal: "right"
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
                   vertical: "top",
-                  horizontal: "right"
+                  horizontal: "right",
                 }}
                 open={open}
                 onClose={handleClose}

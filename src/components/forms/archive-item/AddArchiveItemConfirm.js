@@ -23,7 +23,12 @@ const AddArchiveItemConfirm = ({ state, nextStep, prevStep, handleSubmit, step }
 
   const { make, model, type_id, serial_num, price, description, pictures } = state;
   const types = useSelector(state => state.types.all);
-  const type = types.filter(type => type.id !== type_id)
+  const type = types.filter((type) => {
+    if (Number(type_id) === type.id) {
+      console.log('type if: ', type)
+      return type
+    }
+  });
 
   const pictureList = pictures.map((pic, i) => (
     <GridListTile key={i}>
@@ -42,6 +47,8 @@ const AddArchiveItemConfirm = ({ state, nextStep, prevStep, handleSubmit, step }
     prevStep();
   };
 
+  console.log('AddArchiveItemConfirm: ', type)
+
   return (
     <Fragment>
       <List>
@@ -52,7 +59,7 @@ const AddArchiveItemConfirm = ({ state, nextStep, prevStep, handleSubmit, step }
           <ListItemText primary="Item Model" secondary={model} />
         </ListItem>
         <ListItem>
-          <ListItemText primary="Item Categoty" secondary={type.name} />
+          <ListItemText primary="Item Categoty" secondary={type[0].name} />
         </ListItem>
         <ListItem>
           <ListItemText primary="Item Serial Number" secondary={serial_num} />

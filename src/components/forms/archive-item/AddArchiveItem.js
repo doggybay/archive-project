@@ -5,12 +5,12 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Typography, Paper, Grid, } from '@material-ui/core';
 
 
-import ArchiveItemBasicForm from '../src/components/forms/archive-item/ArchiveItemBasicForm';
-import ArchiveItemDetailsForm from '../src/components/forms/archive-item/ArchiveItemDetailsForm';
-import ArchiveItemPicturesForm from '../src/components/forms/archive-item/ArchiveItemPicturesForm';
-import AddArchiveItemConfirm from '../src/components/forms/archive-item/AddArchiveItemConfirm';
-import { addNewArchiveItem } from '../src/store/archive-items/actionCreators'
-import { fetchAllTypes } from '../src/store/types/actionCreators';
+import ArchiveItemBasicForm from './ArchiveItemBasicForm';
+import ArchiveItemDetailsForm from './ArchiveItemDetailsForm';
+import ArchiveItemPicturesForm from './ArchiveItemPicturesForm';
+import AddArchiveItemConfirm from './AddArchiveItemConfirm';
+import { addNewArchiveItem } from '../../../store/archive-items/actionCreators'
+import { fetchAllTypes } from '../../../store/types/actionCreators';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,8 +49,8 @@ const AddArchiveItem = () => {
   //   dispatch(fetchAllTypes());
   // }, []);
 
-
-  const [widget, setWidget] = useState({})
+  const userLoggedIn = useSelector((state) => state.users.loggedInUser);
+  const [widget, setWidget] = useState({});
 
   const makeWidget = () => {
     setWidget(
@@ -92,7 +92,7 @@ const AddArchiveItem = () => {
         }
       )
     );
-  }
+  };
   
 
   const [step, setStep] = useState(1);
@@ -123,22 +123,18 @@ const AddArchiveItem = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newArchiveItem = { ...state, user_id: 1, type_id: Number(state.type_id), price: Number(state.price) }
+    const newArchiveItem = { ...state, user_id: userLoggedIn.id, type_id: Number(state.type_id), price: Number(state.price) };
 
-    dispatch(addNewArchiveItem(newArchiveItem, router))
-    
-    // router.push("/addtomyarchive/success");
-  }
+    dispatch(addNewArchiveItem(newArchiveItem, router));
+  };
 
   const removePic = (pic) => {
     state.pictures.splice(pic, 1);
     setState({
       ...state,
-          pictures: [...state.pictures]
-    })
-  }
-
-  console.log('state: ', state)
+      pictures: [...state.pictures]
+    });
+  };
 
   switch (step) {
     case 1:

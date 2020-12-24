@@ -1,4 +1,4 @@
-let connString = process.platform === 'win32' ? 'postgres://db_access:freedom@192.168.2.30:5432/inventory-project' : 'postgres://db_access:freedom@192.168.2.30/inventory-project'
+let connString = process.platform === 'win32' ? 'postgres://db_access:freedom@192.168.2.30:5432/inventory-project' : 'postgres://db_access:freedom@192.168.2.30:5432/inventory-project'
 
 let connectionString = 'postgres://db_access:freedom@192.168.10.121/inventory-project'
   

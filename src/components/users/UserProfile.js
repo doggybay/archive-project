@@ -56,9 +56,10 @@ const UserProfile = () => {
               <Typography
                 gutterBottom
               >{`${user.first_name} ${user.last_name}`}</Typography>
-              <Typography
-                gutterBottom
-              >{`${address.st_address}, ${address.opt_address}, ${address.city}, ${address.state}, ${address.zip_code} `}</Typography>
+              <Typography gutterBottom>
+                {address ? (
+                  `${address.st_address}, ${address.opt_address}, ${address.city}, ${address.state}, ${address.zip_code} `
+                ) : ( 'no address ')}</Typography>
               <Typography gutterBottom>{`${user.email}`}</Typography>
             </Grid>
           </Grid>

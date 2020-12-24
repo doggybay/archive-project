@@ -2,16 +2,17 @@ const { Model } = require("objection");
 const knexInstance = require("../db/knex");
 
 // let connection;
-let cachedConnection;
-
+let connection;
+// console.log("db-injector: outside func", connection);
 export const getDatabaseConnector = () => {
-  if (cachedConnection) {
-    console.log("Cached Connection");
-    return cachedConnection;
-  }
+  // if (cachedConnection) {
+  //   console.log("Cached Connection");
+  //   return cachedConnection;
+  // }
 
-  const connection = Model.knex(knexInstance);
-  cachedConnection = connection;
+  
+  connection = Model.knex(knexInstance)
+  console.log('db-injector: New Connection', connection)
   return connection;
 
   // return () => {

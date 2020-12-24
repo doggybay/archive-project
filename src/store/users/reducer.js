@@ -19,6 +19,8 @@ export default (state = initialState, action) => {
     case constants.REMOVE_USER_PENDING:
     case constants.REMOVE_AI_FROM_USER_PENDING:
       return state;
+
+    case constants.USER_LOGOUT_PENDING:
     case constants.USER_LOGIN_PENDING:
       return { ...state, loading: true };
 
@@ -42,7 +44,7 @@ export default (state = initialState, action) => {
       return { ...state, loggedInUser: action.payload, loading: false };
 
     case constants.USER_LOGOUT_SUCCESS:
-      return { ...state, loggedInUser: action.payload };
+      return { ...state, loggedInUser: action.payload, loading: false };
 
     case constants.ADD_NEW_USER_SUCCESS:
       return { ...state, all: [...state.all, action.payload] };

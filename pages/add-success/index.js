@@ -5,7 +5,9 @@ import AddArchiveItemSuccess from '../../src/components/forms/archive-item/AddAr
 const Success = (props) => {
 
   return (
-    <AddArchiveItemSuccess />
+    <div>
+      <AddArchiveItemSuccess />
+    </div>
   )
 } 
 

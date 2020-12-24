@@ -56,7 +56,7 @@ export const userLogout = (router) => {
   return async (dispatch) => {
     try {
       dispatch(actions.userLogoutPending())
-
+      router.push('/loading')
       dispatch(actions.userLogoutSuccess())
 
       localStorage.clear();

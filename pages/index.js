@@ -37,7 +37,7 @@ export default function App(props) {
     <Fragment>
       {loading && userLoading && <Loading />}
       <div style={{ display: loading && userLoading ? "none" : "" }}>
-        <Login />
+        {!loading && <Login />}
       </div>
     </Fragment>
   );

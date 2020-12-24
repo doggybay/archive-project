@@ -7,6 +7,7 @@ import { Typography, Paper, Grid } from '@material-ui/core/';
 
 import { fetchAllTypes } from '../../src/store/types/actionCreators';
 import { fetchOneUser } from '../../src/store/users/actionCreators';
+import AddArchiveItem from '../../src/components/forms/archive-item/addarchiveitem';
 
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
@@ -113,7 +114,7 @@ const AddToMyArchive = (props) => {
                   <Link
                     variant="h6"
                     href={"/addarchiveitem"}
-                    as={`/addtomyarchive/addarchiveitem`}
+                    
                   >
                     {" "}
                     here{" "}
@@ -121,6 +122,9 @@ const AddToMyArchive = (props) => {
                   to begin
                 </Typography>
               </div>
+            </Grid>
+            <Grid item md={12}>
+              <AddArchiveItem />
             </Grid>
           </Grid>
         </Paper>

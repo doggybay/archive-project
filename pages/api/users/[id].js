@@ -12,12 +12,10 @@ const userHandler = async (req, res) => {
       .withGraphFetched(
         "[addresses, user_insurances.[insurance_companys], archive_items.[types, pictures]]"
       );
-    console.log("userHandler: ", user);
+    
     res.json(user);
   } else if (req.method === "PATCH") {
     const user = { ...req.body };
-
-    console.log('userHandler-POST: ', user)
     
     const addressToUpdate = user.address[0];
 

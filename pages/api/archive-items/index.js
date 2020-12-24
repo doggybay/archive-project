@@ -9,6 +9,7 @@ const handler = async (req, res) => {
     );
 
     res.json(archiveItems);
+    
   }  else if(req.method === "POST") {
     // Handle POST method
     const archiveItem = { ...req.body };

@@ -2,14 +2,14 @@ import axios from 'axios'
 import * as actions from './actions'
 //import BASE_URL from '../location'
 
-const BASE_URL = `http//localhost:8000/api`
+const BASE_URL = `http//localhost:3000/api`
 
 export const fetchAllArchiveItems = () => {
   return async (dispatch) => {
     try {
       dispatch(actions.fetchAllArchiveItemsPending())
 
-      const res = await axios.get(`${BASE_URL}/archive-items`);
+      const res = await axios.get(`api/archive-items`);
 
       dispatch(actions.fetchAllArchiveItemsSuccess(res.data))
     } catch (err) {
@@ -23,7 +23,7 @@ export const fetchOneArchiveItem = (id) => {
     try {
       dispatch(actions.fetchOneArchiveItemPending())
 
-      const res = await axios.get(`${BASE_URL}/archive-items/${id}`);
+      const res = await axios.get(`api/archive-items/${id}`);
 
       dispatch(actions.fetchOneArchiveItemSuccess(res.data))
     } catch (err) {
@@ -37,7 +37,7 @@ export const editArchiveItem = (id, item) => {
     try {
       dispatch(actions.editArchiveItemPending())
 
-      const res = await axios.patch(`${BASE_URL}/archive-items/${id}`, item);
+      const res = await axios.patch(`api/archive-items/${id}`, item);
 
       dispatch(actions.editArchiveItemSuccess(res.data))
 
@@ -52,11 +52,11 @@ export const addNewArchiveItem = (newArchiveItem, router) => {
     try {
       dispatch(actions.addNewArchiveItemPending())
 
-      const res = await axios.post(`${BASE_URL}/archive-items`, newArchiveItem)
+      const res = await axios.post(`api/archive-items`, newArchiveItem)
 
       dispatch(actions.addNewArchiveItemSuccess(res.data))
 
-      router.push("/addtomyarchive/success")
+      router.replace("/add-success")
 
     } catch (err) {
       dispatch(actions.addNewArchiveItemFailed(err))
@@ -72,7 +72,7 @@ export const removeArchiveItem = (id) => {
     try {
       dispatch(actions.removeArchiveItemPending())
 
-      const res = await axios.delete(`${BASE_URL}/archive-items/${id}`);
+      const res = await axios.delete(`api/archive-items/${id}`);
 
       dispatch(actions.removeArchiveItemSuccess(res.data))
 

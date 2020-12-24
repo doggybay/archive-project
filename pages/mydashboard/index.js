@@ -15,7 +15,7 @@ const MyDashboard = () => {
     
     dispatch(fetchOneUser(userLoggedIn.id));
     dispatch(fetchAllTypes())
-  }, []);
+  }, [userLoggedIn]);
 
   return (
     <div style={{ display: session ? "" : "none" }}>
