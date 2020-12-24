@@ -7,7 +7,7 @@ import { Typography, Paper, Grid } from '@material-ui/core/';
 
 import { fetchAllTypes } from '../../src/store/types/actionCreators';
 import { fetchOneUser } from '../../src/store/users/actionCreators';
-import AddArchiveItem from '../../src/components/forms/archive-item/addarchiveitem';
+import AddArchiveItem from '../../src/components/forms/archive-item/AddArchiveItem';
 
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
