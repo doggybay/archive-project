@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
-import Nav from '../../src/components/layout/Nav';
+import Nav from './src/components/layout/Nav';
 import { Provider } from 'react-redux';
 import store from '../src/store';
 import * as AuthClient from 'next-auth/client';
