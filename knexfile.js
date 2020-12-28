@@ -15,12 +15,12 @@ let connectionString = 'postgres://db_access:freedom@192.168.10.121/inventory-pr
       },
     production: {
         client: 'pg',
-        connection: process.env.DATABASE_URL,
+        connection: process.env.DB_URL,
         migrations: {
-            directory: __dirname + '/db/migrations',
+            directory: __dirname + '/server/db/migrations',
           },
         seeds: {
-            directory: __dirname + '/db/seeds',
+            directory: __dirname + '/server/db/seeds',
           },
       },
   };
