@@ -65,7 +65,7 @@ const Login = () => {
 
   const googleAuth = (e) => {
     e.preventDefault();
-    signin(null, { callbackUrl: "http://localhost:3000/" });
+    signin(null, { callbackUrl: process.env.SITE });
   };
 
   
