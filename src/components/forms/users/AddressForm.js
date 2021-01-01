@@ -25,7 +25,6 @@ const AddressForm = ({ state, setState}) => {
     });
   };
 
-  console.log("address: ", state)
   return (
     <Fragment>
       <Typography variant="h6" gutterBottom>
