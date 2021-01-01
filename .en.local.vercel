@@ -1,0 +1,18 @@
+NEXTAUTH_URL=https://archive-project.vercel.app/
+SITE=https://archive-project.vercel.app/
+GOOGLE_ID=1053779297169-abmatqgs131k3hq3df3q2id8r5ujmnnv.apps.googleusercontent.com
+GOOGLE_SECRET=RZyFYpNIB2iNr3IQR8Jy8dQu
+FACEBOOK_ID=
+FACEBOOK_SECRET=
+TWITTER_ID=
+TWITTER_SECRET=
+GITHUB_ID=
+GITHUB_SECRET=
+EMAIL_SERVER=smtp://username:password@smtp.example.com:587
+EMAIL_FROM=NextAuth <noreply@example.com>
+DATABASE_URL=postgres://yxqstjmu:uaaqqLwRXAk_ZLx2RDZzjGIG2D4n0lGS@suleiman.db.elephantsql.com:5432/yxqstjmu?synchronize=true
+DB_USERNAME=zhojdapn
+DB_PASSWORD=XhF1X9bk8c7VoteEnHclHTTIpjbvhb3N
+DB_NAME=zhojdapn
+
+postgres://zhojdapn:XhF1X9bk8c7VoteEnHclHTTIpjbvhb3N@suleiman.db.elephantsql.com:5432/zhojdapn

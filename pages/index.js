@@ -31,8 +31,6 @@ export default function App(props) {
 
   }, [session, userLoggedIn])
 
-  console.log('index-app: ', loading, session)
-
   return (
     <Fragment>
       {loading && userLoading && <Loading />}
