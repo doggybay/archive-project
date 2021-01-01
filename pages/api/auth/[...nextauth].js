@@ -4,20 +4,20 @@ import { useRouter } from 'next/router';
 import { userLogin } from '../../../src/store/users/actionCreators';
 import { useDispatch } from "react-redux";
 
-const sendUser = (user) => {
-  const dispatch = useDispatch();
-  const router = useRouter();
+// const sendUser = (user) => {
+//   const dispatch = useDispatch();
+//   const router = useRouter();
 
-  if (user) {
-    const state = { email: user.email };
+//   if (user) {
+//     const state = { email: user.email };
 
-    dispatch(userLogin(state, router))
-  }
+//     dispatch(userLogin(state, router))
+//   }
 
-}
+// }
 
 const options = {
-  site: process.env.SITE || "https://archive-project.vercel.app",
+  site: "https://archive-project.vercel.app",
 
   //Configure one or more authentication providers
   providers: [
