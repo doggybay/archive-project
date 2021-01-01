@@ -17,7 +17,7 @@ const sendUser = (user) => {
 }
 
 const options = {
-  site: process.env.SITE || "http://localhost:3000",
+  site: process.env.SITE || "https://archive-project.vercel.app",
 
   //Configure one or more authentication providers
   providers: [
@@ -34,11 +34,6 @@ const options = {
 
     //   console.log('callbacks-singIuser: ', user)
     //   // sendUser(user)
-      
-
-      
-      
-      
 
     //   return Promise.resolve(true)
     // },
@@ -46,10 +41,9 @@ const options = {
       session.user = user;
       session.account = account;
       return Promise.resolve(session);
-    }
-    
+    },
   },
-  
+
   //A database is optional, but required to persist accounts in a database
   database: process.env.DATABASE_URL,
 };

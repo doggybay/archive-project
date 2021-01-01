@@ -3,7 +3,6 @@ import User from '../../../server/models/User';
 import * as addressController from "../../../server/controllers/address";
 
 const userHandler = async (req, res) => {
-  console.log('userHandler: ', req.method)
 
   if (req.method === "GET") {
     
